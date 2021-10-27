@@ -8,7 +8,7 @@ use FluentValidator\ValidationException;
 abstract class Controller
 {
     /**
-     * @var \FluentCrm\App\Plugin
+     * @var \FluentCrm\Includes\Core\Application
      */
     protected $app = null;
 

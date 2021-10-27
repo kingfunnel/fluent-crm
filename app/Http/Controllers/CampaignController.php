@@ -377,7 +377,7 @@ class CampaignController extends Controller
         $isTest = $this->request->get('test_campaign') == 'yes';
 
         add_action('wp_mail_failed', function ($wpError) {
-            $this->sendError([
+            return $this->sendError([
                 'message' => $wpError->get_error_message()
             ]);
         }, 10, 1);

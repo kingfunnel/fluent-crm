@@ -65,4 +65,11 @@ class Cleanup
                 ]);
         }
     }
+
+    public function handleContactEmailChanged($subscriber)
+    {
+        CampaignEmail::where('subscriber_id', $subscriber->id)
+            ->whereIn('status', ['draft', 'scheduled'])
+            ->update('email_address', $subscriber->email);
+    }
 }

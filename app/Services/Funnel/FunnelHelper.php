@@ -372,11 +372,11 @@ class FunnelHelper
     public static function getRuntimeSequences($funnel, $funnelSubscriber = false)
     {
         $lastSequence = false;
-        if($funnelSubscriber && $funnelSubscriber->last_sequence_id) {
+        if ($funnelSubscriber && $funnelSubscriber->last_sequence_id) {
             $lastSequence = FunnelSequence::where('id', $funnelSubscriber->last_sequence_id);
         }
 
-        if($lastSequence && $lastSequence->parent_id) {
+        if ($lastSequence && $lastSequence->parent_id) {
             // We just have to find the same child-block sequences
             $sequences = FunnelSequence::where('parent_id', $lastSequence->parent_id)
                 ->where('condition_type', $lastSequence->condition_type)
@@ -387,16 +387,16 @@ class FunnelHelper
         }
 
         $sequencesQuery = FunnelSequence::where('funnel_id', $funnel->id);
-        if($lastSequence) {
+        if ($lastSequence) {
             $sequencesQuery->where('sequence', '>', $lastSequence->sequence);
         }
 
         $sequences = $sequencesQuery->orderBy('sequence', 'ASC')->get();
 
-        if($sequences->isEmpty()) {
+        if ($sequences->isEmpty()) {
             return [
                 'immediate_sequences' => [],
-                'next_sequence' => false
+                'next_sequence'       => false
             ];
         }
     }
@@ -404,10 +404,10 @@ class FunnelHelper
 
     public static function extractSequences($sequences)
     {
-        if($sequences->isEmpty()) {
+        if ($sequences->isEmpty()) {
             return [
                 'immediate_sequences' => [],
-                'next_sequence' => false
+                'next_sequence'       => false
             ];
         }
 

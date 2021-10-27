@@ -1,7 +1,7 @@
 <?php
 $alignLeft = 'left';
 $alignRight = 'right';
-if(is_rtl()) {
+if(fluentcrm_is_rtl()) {
     $alignLeft = 'right';
     $alignRight = 'left';
 }
@@ -170,7 +170,7 @@ $content_font_family = $config['content_font_family'];
         margin: 0 0 0 auto;
     }
 
-    <?php if(is_rtl()) : ?>
+    <?php if(fluentcrm_is_rtl()) : ?>
     p,ul,li {
         text-align: right;
     }

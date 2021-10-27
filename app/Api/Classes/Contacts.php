@@ -25,9 +25,9 @@ class Contacts
 
     public function getContact($idOrEmail)
     {
-        if(is_numeric($idOrEmail)) {
+        if (is_numeric($idOrEmail)) {
             return Subscriber::where('id', $idOrEmail)->first();
-        } else if(is_string($idOrEmail)) {
+        } else if (is_string($idOrEmail)) {
             return Subscriber::where('email', $idOrEmail)->first();
         }
         return false;
@@ -35,12 +35,32 @@ class Contacts
 
     public function getContactByUserRef($userIdOrEmail)
     {
-        if(is_numeric($userIdOrEmail)) {
-            return Subscriber::where('user_id', $userIdOrEmail)->first();
-        } else if(is_string($userIdOrEmail)) {
-            return Subscriber::where('email', $userIdOrEmail)->first();
+        $userIdFallback = false;
+        if (is_numeric($userIdOrEmail)) {
+            $subscriber = Subscriber::where('user_id', $userIdOrEmail)->first();
+            if ($subscriber) {
+                return $subscriber;
+            }
+
+            $user = get_user_by('ID', $userIdOrEmail);
+            if (!$user) {
+                return false;
+            }
+            $userIdFallback = $user->id;
+            $userIdOrEmail = $user->user_email;
         }
-        return false;
+
+        $contact = false;
+
+        if (is_string($userIdOrEmail)) {
+            $contact = Subscriber::where('email', $userIdOrEmail)->first();
+            if ($contact && $userIdFallback) {
+                $contact->user_id = $userIdFallback;
+                $contact->save();
+            }
+        }
+
+        return $contact;
     }
 
     public function getContactByUserId($userId)
@@ -51,18 +71,18 @@ class Contacts
     public function createOrUpdate($data, $forceUpdate = false, $deleteOtherValues = false, $sync = false)
     {
 
-        if(empty($data['email']) || !is_email($data['email'])) {
+        if (empty($data['email']) || !is_email($data['email'])) {
             return false;
         }
 
-        if(!$forceUpdate) {
+        if (!$forceUpdate) {
             $exist = Subscriber::where('email', $data['email'])->first();
-            if($exist && $exist->status != 'subscribed' && !empty($data['status'])) {
+            if ($exist && $exist->status != 'subscribed' && !empty($data['status'])) {
                 $forceUpdate = true;
             }
         }
 
-        if(!isset($data['custom_values'])) {
+        if (!isset($data['custom_values'])) {
             $customFieldKeys = [];
             $customFields = (new CustomContactField)->getGlobalFields()['fields'];
             foreach ($customFields as $field) {
@@ -84,12 +104,12 @@ class Contacts
     {
         static $currentContact;
 
-        if($cached && $currentContact) {
+        if ($cached && $currentContact) {
             return $currentContact;
         }
 
         $userId = get_current_user_id();
-        if(!$userId) {
+        if (!$userId) {
             return false;
         }
 

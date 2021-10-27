@@ -209,6 +209,11 @@ class CampaignEmail extends Model
             $this->subscriber
         );
 
+        $preViewUrl = site_url('?fluentcrm=1&route=email_preview&_e_hash=' . $this->email_hash);
+        // Replace Web Preview
+        $content = str_replace('##web_preview_url##', $preViewUrl, $content);
+
+
         return Helper::injectTrackerPixel($content, $this->email_hash);
     }
 

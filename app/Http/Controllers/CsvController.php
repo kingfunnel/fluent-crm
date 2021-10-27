@@ -4,7 +4,6 @@ namespace FluentCrm\App\Http\Controllers;
 
 use FluentCrm\Includes\Helpers\Arr;
 use FluentCrm\Includes\Request\Request;
-use League\Csv\Reader;
 use FluentCrm\App\Models\Subscriber;
 use FluentCrm\Includes\Libs\FileSysytem;
 
@@ -45,9 +44,7 @@ class CsvController extends Controller
         $uploadedFiles = FileSysytem::put($files);
 
         try {
-            $csv = Reader::createFromString(
-                FileSysytem::get($uploadedFiles[0]['file'])
-            );
+            $csv = $this->getCsvReader(FileSysytem::get($uploadedFiles[0]['file']));
             $csv->setDelimiter($delimeter);
             $headers = $csv->fetchOne();
         } catch (\Exception $exception) {
@@ -64,22 +61,22 @@ class CsvController extends Controller
 
         $mappables = Subscriber::mappables();
         $headerItems = array_filter($headers);
-        $subscriberColumns = Subscriber::getColumns();
+        $subscriberColumns = array_keys($mappables);
 
         $maps = [];
 
         foreach ($headerItems as $headerItem) {
             $tableMap = (in_array($headerItem, $subscriberColumns)) ? $headerItem : null;
 
-            if(!$tableMap) {
+            if (!$tableMap) {
                 $santizedItem = str_replace(' ', '_', strtolower($headerItem));
-                if(in_array($santizedItem, $subscriberColumns)) {
+                if (in_array($santizedItem, $subscriberColumns)) {
                     $tableMap = $santizedItem;
                 }
             }
 
             $maps[] = [
-                'csv' => $headerItem,
+                'csv'   => $headerItem,
                 'table' => $tableMap
             ];
         }
@@ -91,19 +88,25 @@ class CsvController extends Controller
             'columns' => $this->app->applyCustomFilters(
                 'subscriber_table_columns', $subscriberColumns
             ),
-            'map' => $maps
+            'map'     => $maps
         ]);
     }
 
     public function import()
     {
         $inputs = $this->request->only([
-            'map', 'tags', 'lists', 'file', 'update', 'new_status', 'double_optin_email'
+            'map', 'tags', 'lists', 'file', 'update', 'new_status', 'double_optin_email', 'import_silently', 'force_update_status'
         ]);
 
+        if (Arr::get($inputs, 'import_silently') == 'yes') {
+            if(!defined('FLUENTCRM_DISABLE_TAG_LIST_EVENTS')) {
+                define('FLUENTCRM_DISABLE_TAG_LIST_EVENTS', true);
+            }
+        }
+
+        $forceStatusChange = Arr::get($inputs, 'force_update_status') == 'yes';
 
         $delimeter = $this->request->get('delimiter', 'comma');
-
 
         if ($delimeter == 'comma') {
             $delimeter = ',';
@@ -114,12 +117,15 @@ class CsvController extends Controller
         $status = $inputs['new_status'];
 
         try {
-            $reader = Reader::createFromString(
-                FileSysytem::get($inputs['file'])
-            );
+            $reader = $this->getCsvReader( FileSysytem::get($inputs['file']));
             $reader->setDelimiter($delimeter);
-
-            $allRecords = $reader->fetchAssoc();
+            if ( method_exists( $reader, 'getRecords' ) ) {
+                $aHeaders = $reader->fetchOne(0);
+                $allRecords = iterator_to_array($reader->getRecords($aHeaders), true);
+                unset( $allRecords[0]);
+            } else {
+                $allRecords = $reader->fetchAssoc();
+            }
         } catch (\Exception $exception) {
             return $this->sendError([
                 'message' => $exception->getMessage()
@@ -179,8 +185,9 @@ class CsvController extends Controller
         $sendDoubleOptin = Arr::get($inputs, 'double_optin_email') == 'yes';
 
         $totalInput = count($subscribers);
+
         $result = Subscriber::import(
-            $subscribers, $inputs['tags'], $inputs['lists'], $inputs['update'], $status, $sendDoubleOptin
+            $subscribers, $inputs['tags'], $inputs['lists'], $inputs['update'], $status, $sendDoubleOptin, $forceStatusChange
         );
 
         $totalSkipped = count($result['skips']) + count($skipped);
@@ -205,7 +212,9 @@ class CsvController extends Controller
             'has_more'             => $hasMore,
             'last_page'            => $page,
             'tags'                 => $inputs['tags'],
-            'lists'                => $inputs['lists']
+            'lists'                => $inputs['lists'],
+            'offset'               => $offset,
+            'result'               => $result
         ]);
     }
 
@@ -217,5 +226,14 @@ class CsvController extends Controller
             $keys[] = $field['slug'];
         }
         return $keys;
+    }
+
+    private function getCsvReader($file)
+    {
+        if(!class_exists(' \League\Csv\Reader')) {
+            include FLUENTCRM_PLUGIN_PATH.'includes/Libs/csv/autoload.php';
+        }
+
+        return \League\Csv\Reader::createFromString($file);
     }
 }

@@ -77,10 +77,12 @@ class Webhook
                 continue;
             }
             $eventName = Arr::get($event, 'event');
-            if (in_array($eventName, ['dropped', 'bounced'])) {
-                $newStatus = 'bounced';
-                if ($eventName == 'dropped') {
-                    $newStatus = 'complained';
+            if (in_array($eventName, ['dropped', 'bounce', 'spamreport', 'unsubscribe'])) {
+                $newStatus = 'complained';
+                if ($eventName == 'bounce') {
+                    $newStatus = 'bounced';
+                } else if($eventName == 'unsubscribe') {
+                    $newStatus = 'unsubscribed';
                 }
                 $unsubscribeData = [
                     'email'  => Arr::get($event, 'email'),

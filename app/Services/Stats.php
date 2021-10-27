@@ -40,7 +40,7 @@ class Stats
                 'title' => __('Tags', 'fluent-crm'),
                 'count' => Tag::count(),
                 'route' => [
-                    'name' => 'lags'
+                    'name' => 'tags'
                 ]
             ],
             'total_templates'   => [

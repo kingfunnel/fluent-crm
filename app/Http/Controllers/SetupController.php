@@ -44,13 +44,14 @@ class SetupController extends Controller
                 'is_installed'     => defined('FLUENTFORM'),
                 'create_form_link' => admin_url('admin.php?page=fluent_forms#add=1')
             ],
+            'is_installed' => defined('FLUENTFORM'),
             'message'   => __('Fluent Forms has been installed and activated', 'fluent-crm')
         ];
     }
 
     public function handleFluentSmtpInstall()
     {
-        if(!current_user_can('install_plugins')) {
+        if (!current_user_can('install_plugins')) {
             return $this->sendError([
                 'message' => __('Sorry! you do not have permission to install plugin', 'fluent-crm')
             ]);
@@ -59,9 +60,32 @@ class SetupController extends Controller
         $this->installFluentSMTP();
 
         return [
-            'is_installed'     => defined('FLUENTMAIL'),
-            'config_url' => admin_url('options-general.php?page=fluent-mail#/'),
-            'message'   => __('FluentSMTP plugin has been installed and activated successfully', 'fluent-crm')
+            'is_installed' => defined('FLUENTMAIL'),
+            'config_url'   => admin_url('options-general.php?page=fluent-mail#/'),
+            'message'      => __('FluentSMTP plugin has been installed and activated successfully', 'fluent-crm')
+        ];
+
+    }
+
+    public function handleFluentConnectInstall()
+    {
+        if (!current_user_can('install_plugins')) {
+            return $this->sendError([
+                'message' => __('Sorry! you do not have permission to install plugin', 'fluent-crm')
+            ]);
+        }
+
+        $plugin_id = 'fluent-connect';
+        $plugin = [
+            'name'      => 'Fluent Connect',
+            'repo-slug' => 'fluent-connect',
+            'file'      => 'fluent-connect.php',
+        ];
+        $this->backgroundInstaller($plugin, $plugin_id);
+
+        return [
+            'is_installed' => defined('FLUENT_CONNECT_PLUGIN_VERSION'),
+            'message'      => __('FluentConnect plugin has been installed and activated successfully', 'fluent-crm')
         ];
 
     }
@@ -71,18 +95,18 @@ class SetupController extends Controller
         $user = get_user_by('ID', get_current_user_id());
         $data = [
             'answers'    => [
-                'website' => site_url(),
-                'email'   => $optinEmail,
+                'website'    => site_url(),
+                'email'      => $optinEmail,
                 'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                'name'    => $user->display_name
+                'last_name'  => $user->last_name,
+                'name'       => $user->display_name
             ],
             'questions'  => [
-                'website' => 'website',
+                'website'    => 'website',
                 'first_name' => 'first_name',
-                'last_name' => 'last_name',
-                'email'   => 'email',
-                'name'    => 'name'
+                'last_name'  => 'last_name',
+                'email'      => 'email',
+                'name'       => 'name'
             ],
             'user'       => [
                 'email' => $optinEmail

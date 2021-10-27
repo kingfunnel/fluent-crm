@@ -20,12 +20,6 @@ class UsersController extends Controller
         $limit = $request->limit ?: 5;
         $fields = $request->fields ?: ['ID', 'display_name', 'user_email'];
 
-        $users = get_users([
-            'role__in' => $roles,
-            'fields'   => $fields,
-            'number'   => $limit
-        ]);
-
         $userQuery = new \WP_User_Query([
             'role__in' => $roles,
             'number'   => $limit,
@@ -45,11 +39,11 @@ class UsersController extends Controller
     public function import(Request $request)
     {
         $inputs = $request->only([
-            'map', 'tags', 'lists', 'roles', 'update', 'new_status', 'double_optin_email'
+            'map', 'tags', 'lists', 'roles', 'update', 'new_status', 'double_optin_email', 'import_silently'
         ]);
 
         $limit = apply_filters('fluentcrm_process_subscribers_per_request', 100);
-        $page = intval($request->get('page', 1));
+        $page = absint($request->get('page', 1));
 
         $userQuery = new \WP_User_Query([
             'role__in' => $inputs['roles'],
@@ -57,9 +51,18 @@ class UsersController extends Controller
             'offset'   => ($page - 1) * $limit
         ]);
 
+        if (Arr::get($inputs, 'import_silently') == 'yes') {
+            if(!defined('FLUENTCRM_DISABLE_TAG_LIST_EVENTS')) {
+                define('FLUENTCRM_DISABLE_TAG_LIST_EVENTS', true);
+            }
+        }
+
         $total = $userQuery->get_total();
         $users = $userQuery->get_results();
-        $this->processUsers($users, $inputs);
+        if($users) {
+            $this->processUsers($users, $inputs);
+        }
+
         $hasRecords = !!count($users);
 
         return $this->sendSuccess([

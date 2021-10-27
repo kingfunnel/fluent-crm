@@ -33,8 +33,9 @@ class SendEmailAction extends BaseAction
                 'send_email_to_type' => 'contact',
                 'send_email_custom'  => '',
                 'campaign'           => FunnelCampaign::getMock(),
-                'is_scheduled' => '',
-                'scheduled_at' => ''
+                'is_scheduled' => 'no',
+                'scheduled_at' => '',
+                'skip_if_overdue' => 'no'
             ]
         ];
     }
@@ -87,6 +88,15 @@ class SendEmailAction extends BaseAction
                     'wrapper_class' => 'fc_half_field',
                     'placeholder' => __('Select Date and Time', 'fluent-crm'),
                     'inline_help' => __('If schedule date is past in the runtime then email will be sent immediately', 'fluent-crm'),
+                    'dependency'  => [
+                        'depends_on'    => 'is_scheduled',
+                        'operator' => '=',
+                        'value'    => 'yes'
+                    ]
+                ],
+                'skip_if_overdue' => [
+                    'type' => 'yes_no_check',
+                    'check_label' => __('Skip sending email if date is overdued', 'fluent-crm'),
                     'dependency'  => [
                         'depends_on'    => 'is_scheduled',
                         'operator' => '=',
@@ -169,9 +179,18 @@ class SendEmailAction extends BaseAction
         $scheduledAt = current_time('mysql');
         if(Arr::get($settings, 'is_scheduled') == 'yes') {
             $providedDate = Arr::get($settings, 'scheduled_at');
+
+            if($providedDate && Arr::get($settings, 'skip_if_overdue') == 'yes') {
+                if(strtotime($scheduledAt) < strtotime($providedDate)) {
+                    FunnelHelper::changeFunnelSubSequenceStatus($funnelSubscriberId, $sequence->id, 'skipped');
+                    return;
+                }
+            }
+
             if( $providedDate && strtotime($providedDate) > strtotime($scheduledAt) ) {
                 $scheduledAt = $providedDate;
             }
+
         }
 
         $args = [
@@ -188,6 +207,5 @@ class SendEmailAction extends BaseAction
             $customAddresses = array_map('trim', explode(',', $customAddresses));
             $campaign->sendToCustomAddresses($customAddresses, $args, $subscriber);
         }
-        //FunnelHelper::changeFunnelSubSequenceStatus($funnelSubscriberId, $sequence->id);
     }
 }

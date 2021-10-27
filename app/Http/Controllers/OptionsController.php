@@ -65,7 +65,7 @@ class OptionsController extends Controller
      */
     public function lists()
     {
-        $lists = Lists::select(['id', 'slug', 'title'])->get();
+        $lists = Lists::select(['id', 'slug', 'title'])->orderBy('title', 'ASC')->get();
 
         $withCount = (array)$this->request->get('with_count', []);
 
@@ -87,7 +87,7 @@ class OptionsController extends Controller
      */
     public function tags()
     {
-        $tags = Tag::select(['id', 'slug', 'title'])->get();
+        $tags = Tag::select(['id', 'slug', 'title'])->orderBy('title', 'ASC')->get();
         foreach ($tags as $tag) {
             $tag->value = strval($tag->id);
             $tag->label = $tag->title;
@@ -293,6 +293,9 @@ class OptionsController extends Controller
                     $pushedIds[] = $category->term_id;
                 }
 
+                if (empty($includedIds)){
+                    $includedIds = $pushedIds;
+                }
                 $includedIds = array_diff($includedIds, $pushedIds);
 
                 if ($includedIds) {
@@ -330,6 +333,9 @@ class OptionsController extends Controller
                     $pushedIds[] = $productId;
                 }
 
+                if(empty($includedIds)){
+                    $includedIds = $pushedIds;
+                }
                 $includedIds = array_diff($includedIds, $pushedIds);
 
                 if($includedIds) {

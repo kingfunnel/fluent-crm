@@ -12,7 +12,7 @@ $mainFont = $config['content_font_family'];
 
 $alignLeft = 'left';
 $alignRight = 'right';
-if(is_rtl()) {
+if(fluentcrm_is_rtl()) {
     $alignLeft = 'right';
     $alignRight = 'left';
 }
@@ -154,7 +154,7 @@ if(is_rtl()) {
     .fc_btn a {
         font-size: 16px;
         text-decoration: none;
-        border-radius: 5px;
+        border-radius: 0px;
         padding: 12px 18px;
         display: block;
         border: 0px solid white;
@@ -377,7 +377,7 @@ if(is_rtl()) {
         margin: 0 0 0 auto;
     }
 
-    <?php if(is_rtl()) : ?>
+    <?php if(fluentcrm_is_rtl()) : ?>
         p,ul,li {
             text-align: right;
         }
@@ -560,7 +560,7 @@ if(is_rtl()) {
     }
 </style>
 
-<?php if(is_rtl()): ?>
+<?php if(fluentcrm_is_rtl()): ?>
 <style>
     html[dir=rtl]
 </style>

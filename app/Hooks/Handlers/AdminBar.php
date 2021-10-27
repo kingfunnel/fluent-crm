@@ -13,7 +13,7 @@ class AdminBar
     {
         $contactPermission = PermissionManager::currentUserCan('fcrm_read_contacts');
 
-        if ( !is_admin() || !$contactPermission ) {
+        if ( !is_admin() || !$contactPermission || apply_filters('fluentcrm_disable_global_search', false) ) {
             return;
         }
 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FluentCRM - Marketing Automation For WordPress\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-14 13:14+0000\n"
-"PO-Revision-Date: 2021-07-20 12:53+0000\n"
+"PO-Revision-Date: 2021-10-25 15:46+0000\n"
 "Last-Translator: admin\n"
 "Language-Team: Hebrew\n"
 "Language: he_IL\n"
@@ -32,6 +32,17 @@ msgid "%1$s for %2$s item"
 msgid_plural "%1$s for %2$s items"
 msgstr[0] ""
 msgstr[1] ""
+
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:245
+msgid ""
+"(Optional) The selected tags will be removed from the contact (if exist)"
+msgstr ""
+
+#: app/Services/TransStrings.php:667
+msgid ""
+"(Please use the name and email as per your domain/SMTP settings. Email "
+"mismatch settings may not deliver emails as expected)"
+msgstr ""
 
 #: app/Services/TransStrings.php:13
 msgid "+ Photo"
@@ -71,7 +82,7 @@ msgstr "[נקודה אופציונלית] זו נקודת טריגר אופצי�
 msgid "[TutorLMS] Check if the contact enroll a course"
 msgstr "[TutorLMS] בדוק אם איש הקשר רושם קורס"
 
-#: app/Hooks/Handlers/ExternalPages.php:669
+#: app/Hooks/Handlers/ExternalPages.php:680
 #, php-format
 msgid ""
 "A conformation email has been sent to %s. Please confirm your email address "
@@ -79,7 +90,7 @@ msgid ""
 msgstr ""
 "דוא\"ל קונפורמציה נשלח אל %s. אנא אשר את כתובת הדוא\"ל שלך כדי להירשם מחדש"
 
-#: app/Hooks/Handlers/ExternalPages.php:649
+#: app/Hooks/Handlers/ExternalPages.php:660
 #, php-format
 msgid ""
 "A conformation email has been sent to %s. Please confirm your email address "
@@ -152,6 +163,10 @@ msgstr "הוסף פעולה"
 msgid "Add Action/Benchmark/Conditions"
 msgstr ""
 
+#: app/Services/TransStrings.php:671
+msgid "Add Action/Goals/Conditions"
+msgstr ""
+
 #: app/Services/TransStrings.php:22
 msgid "Add Address Info"
 msgstr "הוסף פרטי כתובת"
@@ -167,6 +182,10 @@ msgstr "הוסף כותרת קמפיין"
 #: app/Services/TransStrings.php:24
 msgid "Add Custom Data"
 msgstr "הוסף נתונים מותאמים אישית"
+
+#: app/Services/TransStrings.php:677
+msgid "Add Field"
+msgstr ""
 
 #: app/Services/TransStrings.php:25
 msgid "Add More"
@@ -187,6 +206,14 @@ msgstr "הוסף איש קשר חדש"
 #: app/Services/TransStrings.php:29
 msgid "Add New Custom Field"
 msgstr "הוסף שדה מותאם אישית חדש"
+
+#: app/Services/TransStrings.php:685
+msgid "Add New Key"
+msgstr ""
+
+#: app/Services/TransStrings.php:682
+msgid "Add New Manager"
+msgstr ""
 
 #: app/Services/TransStrings.php:35
 msgid "Add new Manager"
@@ -236,21 +263,25 @@ msgstr "הוסף פרמטרים של UTM לכתובות אתרים"
 msgid "Add/Remove Tag of your Contacts based on email interaction"
 msgstr "הוסף / הסר את תג אנשי הקשר שלך על סמך אינטראקציה בדוא\"ל"
 
+#: app/Hooks/Handlers/AdminMenu.php:123 app/Hooks/Handlers/AdminMenu.php:124
+msgid "Addons"
+msgstr ""
+
 #: app/Services/TransStrings.php:40
 msgid "Address Information"
 msgstr "כתובת מידע"
 
-#: app/Services/TransStrings.php:41 app/Services/Helper.php:137
+#: app/Services/TransStrings.php:41 app/Services/Helper.php:135
 #: app/Services/Funnel/FunnelHelper.php:149
 msgid "Address Line 1"
 msgstr "שורת כתובת 1"
 
-#: app/Services/TransStrings.php:42 app/Services/Helper.php:138
+#: app/Services/TransStrings.php:42 app/Services/Helper.php:136
 #: app/Services/Funnel/FunnelHelper.php:153
 msgid "Address Line 2"
 msgstr "שורת כתובת 2"
 
-#: app/Services/Helper.php:169
+#: app/Services/Helper.php:167
 msgid "Admin Email"
 msgstr "דוא\"ל מנהל"
 
@@ -261,6 +292,10 @@ msgstr "AffiliateWP - הרשמה מאושרת / פעילה של שותפים ח�
 #: app/Hooks/Handlers/CountryNames.php:17
 msgid "Afghanistan"
 msgstr "אפגניסטן"
+
+#: app/Http/Controllers/SettingsController.php:97
+msgid "After Confirmation Actions"
+msgstr ""
 
 #: app/Http/Controllers/SettingsController.php:117
 #: app/Http/Controllers/SettingsController.php:118
@@ -287,6 +322,10 @@ msgstr "אלג'יריה"
 msgid "All"
 msgstr "את כל"
 
+#: app/Services/TransStrings.php:681
+msgid "All Administrators automatically will get full access of FluentCRM"
+msgstr ""
+
 #: app/Services/TransStrings.php:47
 msgid "All available contacts"
 msgstr "כל אנשי הקשר הזמינים"
@@ -295,11 +334,11 @@ msgstr "כל אנשי הקשר הזמינים"
 msgid "All available subscribers"
 msgstr "כל המנויים הזמינים"
 
-#: app/Hooks/Handlers/AdminMenu.php:231
+#: app/Hooks/Handlers/AdminMenu.php:239
 msgid "All Campaigns"
 msgstr "כל הקמפיינים"
 
-#: app/Hooks/Handlers/AdminMenu.php:194
+#: app/Hooks/Handlers/AdminMenu.php:202
 msgid "All Contacts"
 msgstr "כל אנשי הקשר"
 
@@ -315,7 +354,7 @@ msgstr "הכל בוצע"
 msgid "All Email Activities"
 msgstr "כל פעילויות הדוא\"ל"
 
-#: app/Hooks/Handlers/AdminMenu.php:246
+#: app/Hooks/Handlers/AdminMenu.php:254
 msgid "All Emails"
 msgstr "כל המיילים"
 
@@ -335,7 +374,13 @@ msgstr ""
 "כל הרשימה הנבחרת והמנויים נוספו בהצלחה לרצף זה. הודעות דוא\"ל יישלחו לפי "
 "התצורה שלך"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:199
+#: app/Services/TransStrings.php:690
+msgid ""
+"All Your Fluent CRM Data (Contacts, Campaigns, Settings, Emails) will be "
+"deleted"
+msgstr ""
+
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:210
 msgid ""
 "Allow FluentCRM integration conditionally based on your submission values"
 msgstr "אפשר שילוב FluentCRM מותנה בהתבסס על ערכי ההגשה שלך"
@@ -368,6 +413,10 @@ msgstr "אנטארקטיקה"
 msgid "Antigua and Barbuda"
 msgstr "אנטיגואה וברבודה"
 
+#: app/Services/TransStrings.php:676
+msgid "APIs"
+msgstr ""
+
 #: app/Services/TransStrings.php:52
 msgid "Apply"
 msgstr "להגיש מועמדות"
@@ -380,6 +429,10 @@ msgstr "החל רשימה"
 msgid "Apply List to the contact"
 msgstr "החל רשימת איש הקשר"
 
+#: app/Services/TransStrings.php:699
+msgid "Apply Lists when clicked (optional)"
+msgstr ""
+
 #: app/Services/Funnel/Actions/ApplyTagAction.php:22
 msgid "Apply Tag"
 msgstr "החל את התג"
@@ -388,9 +441,17 @@ msgstr "החל את התג"
 msgid "Apply Tag to the contact"
 msgstr "החל את תג על איש הקשר"
 
+#: app/Services/TransStrings.php:698
+msgid "Apply Tags when clicked"
+msgstr ""
+
 #: app/Services/TransStrings.php:53
 msgid "Archived"
 msgstr "הועבר בארכיון"
+
+#: app/Services/TransStrings.php:691
+msgid "Are you sure, you want to reset the CRM Database?"
+msgstr ""
 
 #: app/Hooks/Handlers/CountryNames.php:57
 msgid "Argentina"
@@ -420,7 +481,7 @@ msgstr ""
 msgid "Assign Tags"
 msgstr "הקצה תגים"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:122
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:133
 msgid ""
 "Associate your FluentCRM merge tags to the appropriate Fluent Form fields by "
 "selecting the appropriate form field from the list."
@@ -465,6 +526,10 @@ msgstr "משפך אוטומציה"
 msgid "Automation Funnels"
 msgstr "משפכי אוטומציה"
 
+#: app/Services/TransStrings.php:664
+msgid "Automation Name"
+msgstr ""
+
 #: app/Services/PermissionManager.php:49
 msgid "Automation Read"
 msgstr "קריאת אוטומציה"
@@ -475,7 +540,7 @@ msgstr "אוטומציה כתיבה / עריכה / מחיקה"
 
 #: app/Services/Stats.php:104 app/Services/TransStrings.php:57
 #: app/Hooks/Handlers/AdminMenu.php:104 app/Hooks/Handlers/AdminMenu.php:105
-#: app/Hooks/Handlers/AdminMenu.php:265
+#: app/Hooks/Handlers/AdminMenu.php:273
 msgid "Automations"
 msgstr "אוטומציות"
 
@@ -591,6 +656,10 @@ msgstr "בוסניה והרצגובינה"
 msgid "Botswana"
 msgstr "בוצואנה"
 
+#: app/Services/TransStrings.php:692
+msgid "Bounce Handling Settings"
+msgstr ""
+
 #: app/Services/TransStrings.php:637
 #: app/Http/Controllers/OptionsController.php:144
 #: app/Http/Controllers/OptionsController.php:179
@@ -629,7 +698,7 @@ msgstr "בורקינה פאסו"
 msgid "Burundi"
 msgstr "בורונדי"
 
-#: app/Services/Helper.php:168
+#: app/Services/Helper.php:166
 msgid "Business Address"
 msgstr "כתובת עסקית"
 
@@ -637,7 +706,7 @@ msgstr "כתובת עסקית"
 msgid "Business Full Address"
 msgstr "כתובת מלאה של העסק"
 
-#: app/Services/TransStrings.php:67 app/Services/Helper.php:167
+#: app/Services/TransStrings.php:67 app/Services/Helper.php:165
 msgid "Business Name"
 msgstr "שם עסק"
 
@@ -661,7 +730,7 @@ msgstr "לפי פלח דינמי"
 msgid "By List & Tag"
 msgstr "לפי רשימה ותג"
 
-#: app/Functions/helpers.php:359
+#: app/Functions/helpers.php:360
 msgid "Call"
 msgstr ""
 
@@ -873,12 +942,12 @@ msgstr "בחר חדש"
 msgid "Christmas Island"
 msgstr "אי חג המולד"
 
-#: app/Services/TransStrings.php:123 app/Services/Helper.php:139
+#: app/Services/TransStrings.php:123 app/Services/Helper.php:137
 #: app/Services/Funnel/FunnelHelper.php:161
 msgid "City"
 msgstr "עִיר"
 
-#: app/Services/Helper.php:271
+#: app/Services/Helper.php:270
 msgid "Classic Editor"
 msgstr ""
 
@@ -972,7 +1041,7 @@ msgstr "חסימות תנאי"
 msgid "conditional"
 msgstr ""
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:198
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:209
 msgid "Conditional Logics"
 msgstr "לוגיקה מותנית"
 
@@ -1002,7 +1071,7 @@ msgstr "תנאים"
 msgid "Configuration"
 msgstr "תְצוּרָה"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:46
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:52
 msgid "Configuration required!"
 msgstr "תצורה נדרשת!"
 
@@ -1026,14 +1095,14 @@ msgstr "קונגו (בראזוויל)"
 msgid "Congo (Kinshasa)"
 msgstr "קונגו (קינשאסה)"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:33
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:36
 msgid ""
 "Connect FluentCRM with WP Fluent Forms and subscribe a contact when a form "
 "is submitted."
 msgstr ""
 "חבר את FluentCRM עם WP Forms Fluent Forms והירשם כמנוי לאיש קשר כשמוגש טופס."
 
-#: app/Services/TransStrings.php:140 app/Services/Helper.php:128
+#: app/Services/TransStrings.php:140 app/Services/Helper.php:126
 msgid "Contact"
 msgstr "איש קשר"
 
@@ -1053,7 +1122,7 @@ msgstr "איש קשר נוסף בכל אחת מהרשימות שנבחרו"
 msgid "contact added in any of the selected Tags"
 msgstr "איש קשר נוסף בכל אחד מהתגיות שנבחרו"
 
-#: app/Http/Controllers/SubscriberController.php:489
+#: app/Http/Controllers/SubscriberController.php:498
 msgid "Contact Already Subscribed"
 msgstr "איש הקשר כבר רשום"
 
@@ -1061,13 +1130,13 @@ msgstr "איש הקשר כבר רשום"
 msgid "Contact can see all lists and manage subscriptions"
 msgstr "איש קשר יכול לראות את כל הרשימות ולנהל מנויים"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:292
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:359
 msgid ""
 "Contact creation has been skipped because contact already exist in the "
 "database"
 msgstr "יצירת המגע דלגה כיוון שכבר קיים איש קשר במסד הנתונים"
 
-#: app/Services/Helper.php:134
+#: app/Services/Helper.php:132
 msgid "Contact Email"
 msgstr "דוא\"ל ליצירת קשר"
 
@@ -1091,7 +1160,7 @@ msgstr "שדה קשר (CRM)"
 msgid "Contact Files & Attachments"
 msgstr "קבצי קשר וקבצים מצורפים"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:339
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:406
 msgid "Contact has been created in FluentCRM. Contact ID: "
 msgstr "איש קשר נוצר ב- FluentCRM. מזהה איש קשר:"
 
@@ -1099,11 +1168,11 @@ msgstr "איש קשר נוצר ב- FluentCRM. מזהה איש קשר:"
 msgid "contact has been successfully updated."
 msgstr ""
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:375
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:446
 msgid "Contact has been updated in FluentCRM. Contact ID: "
 msgstr "איש הקשר עודכן ב- FluentCRM. מזהה איש קשר:"
 
-#: app/Services/Helper.php:135
+#: app/Services/Helper.php:133
 msgid "Contact ID"
 msgstr "תעודת זהות ליצירת קשר"
 
@@ -1135,7 +1204,7 @@ msgstr "פלחי קשר"
 msgid "Contact Source"
 msgstr "צור קשר עם המקור"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:161
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:172
 msgid "Contact Tags"
 msgstr "תגי קשר"
 
@@ -1148,7 +1217,7 @@ msgid "Contact Type"
 msgstr "סוג המגע"
 
 #: app/Services/TransStrings.php:148 app/Hooks/Handlers/AdminMenu.php:62
-#: app/Hooks/Handlers/AdminMenu.php:63 app/Hooks/Handlers/AdminMenu.php:189
+#: app/Hooks/Handlers/AdminMenu.php:63 app/Hooks/Handlers/AdminMenu.php:197
 msgid "Contacts"
 msgstr "אנשי קשר"
 
@@ -1220,7 +1289,7 @@ msgstr "איי קוק"
 msgid "Costa Rica"
 msgstr "קוסטה ריקה"
 
-#: app/Services/TransStrings.php:155 app/Services/Helper.php:142
+#: app/Services/TransStrings.php:155 app/Services/Helper.php:140
 msgid "Country"
 msgstr "מדינה"
 
@@ -1308,6 +1377,12 @@ msgstr "צור רצף חדש"
 msgid "Create New Template"
 msgstr "צור תבנית חדשה"
 
+#: app/Services/TransStrings.php:684
+msgid ""
+"Create REST API Key for specific CRM Manager to access and manage data over "
+"API"
+msgstr ""
+
 #: app/Services/TransStrings.php:166
 msgid "Create Smart Link"
 msgstr "צור קישור חכם"
@@ -1315,6 +1390,10 @@ msgstr "צור קישור חכם"
 #: app/Services/TransStrings.php:167
 msgid "Create Template"
 msgstr "צור תבנית"
+
+#: app/Services/TransStrings.php:679
+msgid "Create Webhook"
+msgstr ""
 
 #: app/Services/TransStrings.php:82
 msgid "Create Your First Email Campaign"
@@ -1347,6 +1426,10 @@ msgstr "תוסף CRM  לניוזלטר ודואר אלקטרוני עבור Word
 #: app/Services/PermissionManager.php:11
 msgid "CRM Dashboard"
 msgstr "לוח מחוונים של CRM"
+
+#: app/Services/TransStrings.php:680
+msgid "CRM Managers"
+msgstr ""
 
 #: app/Hooks/Handlers/CountryNames.php:237
 msgid "Croatia"
@@ -1396,15 +1479,15 @@ msgstr "שדות קשר מותאמים אישית"
 msgid "Custom Contact Properties"
 msgstr "מאפייני קשר מותאמים אישית"
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:67
+#: app/Services/Funnel/Actions/SendEmailAction.php:68
 msgid "Custom Email Addresses"
 msgstr "כתובות דוא\"ל מותאמות אישית"
 
-#: app/Http/Controllers/SubscriberController.php:537
+#: app/Http/Controllers/SubscriberController.php:546
 msgid "Custom Email has been successfully sent"
 msgstr "דוא\"ל מותאם אישית נשלח בהצלחה"
 
-#: app/Http/Controllers/SubscriberController.php:503
+#: app/Http/Controllers/SubscriberController.php:512
 msgid "Custom Email to Contact"
 msgstr "דוא\"ל מותאם אישית ליצירת קשר"
 
@@ -1420,7 +1503,7 @@ msgstr "שדה שבלול מותאם אישית"
 msgid "Custom Profile Data"
 msgstr "נתוני פרופיל מותאם אישית"
 
-#: app/Functions/helpers.php:351
+#: app/Functions/helpers.php:352
 msgid "Customer"
 msgstr ""
 
@@ -1436,8 +1519,12 @@ msgstr "קַפרִיסִין"
 msgid "Czechia (Czech Republic)"
 msgstr "צ'כיה (צ'כיה)"
 
+#: app/Services/TransStrings.php:689
+msgid "Danger Zone"
+msgstr ""
+
 #: app/Services/TransStrings.php:187 app/Hooks/Handlers/AdminMenu.php:52
-#: app/Hooks/Handlers/AdminMenu.php:53 app/Hooks/Handlers/AdminMenu.php:181
+#: app/Hooks/Handlers/AdminMenu.php:53 app/Hooks/Handlers/AdminMenu.php:189
 msgid "Dashboard"
 msgstr "לוח בקרה"
 
@@ -1449,7 +1536,7 @@ msgstr "תַאֲרִיך"
 msgid "Date Added"
 msgstr "תאריך הוסף"
 
-#: app/Services/TransStrings.php:190 app/Services/Helper.php:145
+#: app/Services/TransStrings.php:190 app/Services/Helper.php:143
 msgid "Date of Birth"
 msgstr "תאריך לידה"
 
@@ -1473,6 +1560,10 @@ msgstr "צבע כותרות ברירת מחדל"
 #: app/Services/TransStrings.php:195
 msgid "Default Link Color"
 msgstr "צבע קישור ברירת מחדל"
+
+#: app/Services/TransStrings.php:669
+msgid "Default Reply to Name (Optional)"
+msgstr ""
 
 #: app/Services/TransStrings.php:196
 msgid "Delay"
@@ -1550,6 +1641,10 @@ msgstr ""
 msgid "Do not show the checkbox if current user already subscribed state"
 msgstr "אל תציג את תיבת הסימון אם המשתמש הנוכחי כבר רשום"
 
+#: app/Services/TransStrings.php:686
+msgid "Documentation"
+msgstr ""
+
 #: app/Services/Stats.php:114
 msgid "Documentations"
 msgstr "תיעודים"
@@ -1579,7 +1674,7 @@ msgstr "הגדרות הצטרפות כפולות"
 msgid "Double Opt-in settings has been updated"
 msgstr "הגדרות ההצטרפות הכפולה עודכנו"
 
-#: app/Http/Controllers/SubscriberController.php:496
+#: app/Http/Controllers/SubscriberController.php:505
 msgid "Double OptIn email has been sent"
 msgstr "דוא\"ל OptIn כפול נשלח"
 
@@ -1611,7 +1706,7 @@ msgstr "לְשַׁכְפֵּל"
 msgid "Dynamic Segments"
 msgstr "פלחים דינמיים"
 
-#: app/Services/Helper.php:347
+#: app/Services/Helper.php:346
 msgid "Easy Digital Downloads"
 msgstr "הורדות דיגיטליות קלות"
 
@@ -1623,7 +1718,7 @@ msgstr "אקוודור"
 msgid "Edd - New Order Success"
 msgstr "אדד - הצלחה בהזמנה חדשה"
 
-#: app/Services/Helper.php:346
+#: app/Services/Helper.php:345
 msgid "EDD Purchase History"
 msgstr "היסטוריית הרכישות של EDD"
 
@@ -1667,6 +1762,10 @@ msgstr "מנהל עריכה"
 msgid "Edit Note"
 msgstr "ערוך הערה"
 
+#: app/Services/TransStrings.php:672
+msgid "Edit Primary Automation Trigger"
+msgstr ""
+
 #: app/Services/TransStrings.php:225
 msgid "Edit Recipients"
 msgstr "ערוך נמענים"
@@ -1699,15 +1798,21 @@ msgstr "מִצְרַיִם"
 msgid "El Salvador"
 msgstr "אל סלבדור"
 
-#: app/Functions/helpers.php:360 app/Services/TransStrings.php:233
+#: app/Functions/helpers.php:361 app/Services/TransStrings.php:233
 #: app/Services/Funnel/FunnelHelper.php:135
 msgid "Email"
 msgstr "אימייל"
 
 #: app/Services/TransStrings.php:234
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:129
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:140
 msgid "Email Address"
 msgstr "כתובת דוא\"ל"
+
+#: app/Services/TransStrings.php:668
+msgid ""
+"email as per your domain/SMTP settings. Email mismatch settings may not "
+"deliver emails as expected"
+msgstr ""
 
 #: app/Services/TransStrings.php:235
 #: app/Http/Controllers/SettingsController.php:85
@@ -1763,7 +1868,7 @@ msgstr "דוא\"ל מהשם"
 msgid "Email History Logs"
 msgstr "יומני היסטוריית דוא\"ל"
 
-#: app/Hooks/Handlers/ExternalPages.php:622
+#: app/Hooks/Handlers/ExternalPages.php:633
 msgid "Email is not valid. Please provide a valid email"
 msgstr "הדוא\"ל אינו תקף. אנא שלחו אימייל תקף"
 
@@ -1783,7 +1888,7 @@ msgstr ""
 msgid "Email Pre-Header"
 msgstr "שלח כותרת מראש לדוא\"ל"
 
-#: includes/Parser/ShortcodeParser.php:131
+#: includes/Parser/ShortcodeParser.php:126
 msgid "Email Preference"
 msgstr ""
 
@@ -1809,7 +1914,7 @@ msgstr "הדוא\"ל נשלח %"
 
 #: app/Services/Stats.php:94 app/Services/TransStrings.php:248
 #: app/Hooks/Handlers/AdminMenu.php:82 app/Hooks/Handlers/AdminMenu.php:83
-#: app/Hooks/Handlers/AdminMenu.php:236
+#: app/Hooks/Handlers/AdminMenu.php:244
 msgid "Email Sequences"
 msgstr "סדרות מיילים"
 
@@ -1835,7 +1940,7 @@ msgid "Email Subject is required"
 msgstr "נושא הדוא\"ל נדרש"
 
 #: app/Services/Stats.php:47 app/Services/TransStrings.php:253
-#: app/Hooks/Handlers/AdminMenu.php:241
+#: app/Hooks/Handlers/AdminMenu.php:249
 msgid "Email Templates"
 msgstr "תבניות אימייל"
 
@@ -1843,8 +1948,8 @@ msgstr "תבניות אימייל"
 msgid "Email Templates Manage"
 msgstr "ניהול תבניות דוא\"ל"
 
-#: app/Services/TransStrings.php:255 app/Services/Helper.php:80
-#: app/Hooks/Handlers/AdminMenu.php:224
+#: app/Services/TransStrings.php:255 app/Services/Helper.php:78
+#: app/Hooks/Handlers/AdminMenu.php:232
 msgid "Emails"
 msgstr "דוא\"ל"
 
@@ -1908,7 +2013,7 @@ msgstr "אפשר ליצור אנשי קשר חדשים ב- FluentCRM כאשר מ
 msgid "Enable Double Opt-in Confirmation"
 msgstr "אפשר אישור הסכמה כפולה"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:185
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:196
 msgid "Enable Double Option for new contacts"
 msgstr "אפשר אפשרות כפולה לאנשי קשר חדשים"
 
@@ -1917,11 +2022,11 @@ msgstr "אפשר אפשרות כפולה לאנשי קשר חדשים"
 msgid "Enable Double-Optin Email Confirmation"
 msgstr "הפעל אישור אימייל כפול אופטי"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:170
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:181
 msgid "Enable Dynamic Tag Selection"
 msgstr "אפשר בחירת תגים דינמית"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:191
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:202
 msgid ""
 "Enable Force Subscribe if contact is not in subscribed status (Existing "
 "contact only)"
@@ -1943,7 +2048,7 @@ msgstr ""
 msgid "Enable Sync between WP User Data and Fluent CRM Contact Data"
 msgstr "אפשר סנכרון בין נתוני משתמש WP ונתוני קשר שוטפים של CRM"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:207
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:257
 msgid "Enable This feed"
 msgstr "אפשר עדכון זה"
 
@@ -2039,7 +2144,7 @@ msgstr "מנוי ייצוא"
 msgid "Exporting... Please wait"
 msgstr "מייצא ... אנא המתן"
 
-#: app/Functions/helpers.php:372
+#: app/Functions/helpers.php:373
 msgid "Facebook Post"
 msgstr ""
 
@@ -2059,11 +2164,11 @@ msgstr "איי פוקלנד"
 msgid "Faroe Islands"
 msgstr "איי פרו"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:104
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:115
 msgid "Feed Name"
 msgstr "שם העדכון"
 
-#: app/Functions/helpers.php:370
+#: app/Functions/helpers.php:371
 msgid "Feedback"
 msgstr ""
 
@@ -2099,10 +2204,10 @@ msgstr "מסונן על ידי"
 msgid "Finland"
 msgstr "פינלנד"
 
-#: app/Services/TransStrings.php:277 app/Services/Helper.php:132
+#: app/Services/TransStrings.php:277 app/Services/Helper.php:130
 #: app/views/external/manage_subscription_form.php:12
 #: app/Services/Funnel/FunnelHelper.php:127
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:135
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:146
 msgid "First Name"
 msgstr "שם פרטי"
 
@@ -2114,7 +2219,7 @@ msgstr "מערכת דיוור"
 msgid "Fluent Forms"
 msgstr "טפסים שוטפים"
 
-#: app/Http/Controllers/SetupController.php:47
+#: app/Http/Controllers/SetupController.php:48
 msgid "Fluent Forms has been installed and activated"
 msgstr "Fluent Forms הותקנו והופעלו"
 
@@ -2128,26 +2233,30 @@ msgstr "Fluent Forms הוא תוסף חופשי ל- WordPress המשולב ב- F
 msgid "Fluent Forms that are connected with your CRM"
 msgstr "Fluent Forms המחוברים ל- CRM שלך"
 
+#: app/Http/Controllers/SetupController.php:88
+msgid "FluentConnect plugin has been installed and activated successfully"
+msgstr ""
+
 #: app/Hooks/Handlers/AdminMenu.php:41 app/Hooks/Handlers/AdminMenu.php:42
 msgid "FluentCRM"
 msgstr "מערכת דיוור"
 
 #. Name of the plugin
 #, fuzzy
-#| msgid "FluentCRM - Marketing Automation For WordPress"
-msgid "FluentCRM - Marketing Automation For WordPress (BETA)"
+#| msgid "FluentCRM - Marketing Automation For WordPress (BETA)"
+msgid "FluentCRM - Marketing Automation For WordPress"
 msgstr "FluentCRM - אוטומציה שיווקית עבור וורדפרס"
 
 #: app/views/admin/setup_wizard.php:6
 msgid "FluentCRM - Setup Wizard"
 msgstr "אשף ההתקנה של מערכת דיוור"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:279
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:346
 msgid "FluentCRM API called skipped because no valid email available"
 msgstr "ממשק ה- API של FluentCRM התקשר, כי אין דוא\"ל חוקי זמין"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:124
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:154
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:135
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:165
 msgid "FluentCRM Field"
 msgstr "שדה FluentCRM"
 
@@ -2155,13 +2264,13 @@ msgstr "שדה FluentCRM"
 msgid "FluentCRM Integration Feed"
 msgstr "עדכון אינטגרציה FluentCRM"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:48
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:54
 msgid ""
 "FluentCRM is not configured yet! Please configure your FluentCRM api first"
 msgstr ""
 "FluentCRM עדיין לא מוגדר! אנא הגדר תחילה את ממשק ה- API של FluentCRM שלך"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:111
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:122
 msgid "FluentCRM List"
 msgstr "רשימת FluentCRM"
 
@@ -2173,7 +2282,7 @@ msgstr ""
 msgid "FluentSMTP"
 msgstr "FluentSMTP"
 
-#: app/Http/Controllers/SetupController.php:64
+#: app/Http/Controllers/SetupController.php:65
 msgid "FluentSMTP plugin has been installed and activated successfully"
 msgstr "תוסף FluentSMTP הותקן והופעל בהצלחה"
 
@@ -2181,8 +2290,8 @@ msgstr "תוסף FluentSMTP הותקן והופעל בהצלחה"
 msgid "Footer Text Color"
 msgstr "צבע טקסט תחתונה"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:125
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:155
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:136
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:166
 #: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:80
 msgid "Form Field"
 msgstr "שדה טופס"
@@ -2198,7 +2307,7 @@ msgid ""
 msgstr ""
 "הגשת טפסים מטפסים שוטפים תוצג כאן. נכון לעכשיו, טפסים שוטפים אינם מותקנים"
 
-#: app/Services/Helper.php:96
+#: app/Services/Helper.php:94
 msgid "Form Submissions"
 msgstr "הגשת טפסים"
 
@@ -2212,7 +2321,7 @@ msgstr "כותרת טופס"
 
 #: app/Services/Stats.php:99 app/Services/TransStrings.php:285
 #: app/Hooks/Handlers/AdminMenu.php:93 app/Hooks/Handlers/AdminMenu.php:94
-#: app/Hooks/Handlers/AdminMenu.php:257
+#: app/Hooks/Handlers/AdminMenu.php:265
 msgid "Forms"
 msgstr "טפסים"
 
@@ -2236,6 +2345,10 @@ msgstr "השטחים הדרומיים הצרפתיים"
 msgid "Friday"
 msgstr ""
 
+#: app/Services/TransStrings.php:670
+msgid "Friendly Name for identification"
+msgstr ""
+
 #: app/Services/TransStrings.php:288
 msgid "From Email"
 msgstr "מדוא\"ל"
@@ -2248,8 +2361,8 @@ msgstr "מכתובת המייל"
 msgid "From Name"
 msgstr "מהשם"
 
-#: app/Services/Helper.php:130
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:143
+#: app/Services/Helper.php:128
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:154
 msgid "Full Name"
 msgstr "שם מלא"
 
@@ -2267,17 +2380,21 @@ msgstr "משפך נוצר. אנא הגדר כעת"
 msgid "Funnel has been deleted"
 msgstr "משפך נמחק"
 
-#: app/Http/Controllers/FunnelController.php:319
+#: app/Http/Controllers/FunnelController.php:366
 msgid "Funnel has been successfully cloned"
 msgstr "המשפך שובט בהצלחה"
 
-#: app/Http/Controllers/FunnelController.php:411
+#: app/Http/Controllers/FunnelController.php:458
 msgid "Funnel has been successfully imported"
 msgstr "משפך יובא בהצלחה"
 
 #: app/Services/TransStrings.php:293
 msgid "Funnel Name"
 msgstr "שם משפך"
+
+#: app/Http/Controllers/FunnelController.php:157
+msgid "Funnel Trigger has been successfully updated"
+msgstr ""
 
 #: app/Hooks/Handlers/CountryNames.php:333
 msgid "Gabon"
@@ -2287,7 +2404,7 @@ msgstr "גבון"
 msgid "Gambia"
 msgstr "גמביה"
 
-#: app/Services/Helper.php:165
+#: app/Services/Helper.php:163
 msgid "General"
 msgstr "כללי"
 
@@ -2310,6 +2427,10 @@ msgstr "השג את FluentCRM Pro"
 #: app/Services/TransStrings.php:571
 msgid "Get started with adding an email to this sequence"
 msgstr "התחל עם הוספת דוא\"ל לרצף זה"
+
+#: app/Services/TransStrings.php:673
+msgid "Getting Started"
+msgstr ""
 
 #: app/Hooks/Handlers/CountryNames.php:349
 msgid "Ghana"
@@ -2399,7 +2520,7 @@ msgstr "כותרת משפחת גופנים"
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
-#: app/Hooks/Handlers/AdminMenu.php:138 app/Hooks/Handlers/AdminMenu.php:139
+#: app/Hooks/Handlers/AdminMenu.php:146 app/Hooks/Handlers/AdminMenu.php:147
 msgid "Help"
 msgstr ""
 
@@ -2424,11 +2545,11 @@ msgstr "https://fluentcrm.com"
 msgid "Hungary"
 msgstr "הונגריה"
 
-#: app/Hooks/Handlers/ExternalPages.php:243
+#: app/Hooks/Handlers/ExternalPages.php:250
 msgid "I never signed up for this email list"
 msgstr "מעולם לא נרשמתי לרשימת הדוא\"ל הזו"
 
-#: app/Hooks/Handlers/ExternalPages.php:242
+#: app/Hooks/Handlers/ExternalPages.php:249
 msgid "I no longer want to receive these emails"
 msgstr "אני כבר לא רוצה לקבל את המיילים האלה"
 
@@ -2448,19 +2569,19 @@ msgstr "מזהים"
 msgid "If Contact Already Exist?"
 msgstr "אם איש קשר כבר קיים?"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:144
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:155
 msgid ""
 "If First Name & Last Name is not available full name will be used to get "
 "first name and last name"
 msgstr ""
 "אם שם פרטי ושם משפחה אינם זמינים שם מלא ישמש לשם קבלת שם פרטי ושם משפחה"
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:89
+#: app/Services/Funnel/Actions/SendEmailAction.php:90
 msgid ""
 "If schedule date is past in the runtime then email will be sent immediately"
 msgstr "אם תאריך לוח הזמנים עבר בזמן הריצה, הדוא\"ל יישלח מיד"
 
-#: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:161
+#: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:163
 msgid ""
 "If you enable this then this will run only once per customer otherwise, It "
 "will delete the existing automation flow and start new"
@@ -2532,6 +2653,10 @@ msgstr "אנשי קשר כלולים"
 msgid "Incoming Web Hooks"
 msgstr "ווים נכנסים לאינטרנט"
 
+#: app/Services/TransStrings.php:678
+msgid "Incoming Webhook Settings"
+msgstr ""
+
 #: app/Services/TransStrings.php:312
 msgid "Incomplete"
 msgstr "לא שלם"
@@ -2588,19 +2713,19 @@ msgstr "אימיילים לא חוקיים:"
 msgid "Invalid selection of lists and tags in subscribers included."
 msgstr "כלול בחירה לא חוקית של רשימות ותגים במנויים."
 
-#: app/Functions/helpers.php:367
+#: app/Functions/helpers.php:368
 msgid "Invoice: Paid"
 msgstr ""
 
-#: app/Functions/helpers.php:366
+#: app/Functions/helpers.php:367
 msgid "Invoice: Part Paid"
 msgstr ""
 
-#: app/Functions/helpers.php:368
+#: app/Functions/helpers.php:369
 msgid "Invoice: Refunded"
 msgstr ""
 
-#: app/Functions/helpers.php:365
+#: app/Functions/helpers.php:366
 msgid "Invoice: Sent"
 msgstr ""
 
@@ -2702,10 +2827,10 @@ msgstr "תאריך שינוי אחרון"
 msgid "Last Executed At"
 msgstr "הוצא להורג האחרון ב"
 
-#: app/Services/TransStrings.php:325 app/Services/Helper.php:133
+#: app/Services/TransStrings.php:325 app/Services/Helper.php:131
 #: app/views/external/manage_subscription_form.php:16
 #: app/Services/Funnel/FunnelHelper.php:131
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:139
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:150
 msgid "Last Name"
 msgstr "שם משפחה"
 
@@ -2717,7 +2842,7 @@ msgstr "פעולה אחרונה"
 msgid "Latvia"
 msgstr "לטביה"
 
-#: app/Functions/helpers.php:350
+#: app/Functions/helpers.php:351
 msgid "Lead"
 msgstr ""
 
@@ -2769,6 +2894,10 @@ msgstr "לחץ על קישור"
 msgid "Link Metrics"
 msgstr "מדדי קישור"
 
+#: app/Services/TransStrings.php:695
+msgid "Link Title"
+msgstr ""
+
 #: app/Services/TransStrings.php:333
 msgid "List"
 msgstr "רשימה"
@@ -2800,7 +2929,7 @@ msgstr "הרשימה הוסרה"
 msgid "List Removed From Contact"
 msgstr "הרשימה הוסרה מאיש קשר"
 
-#: app/Services/TransStrings.php:334 app/Hooks/Handlers/AdminMenu.php:203
+#: app/Services/TransStrings.php:334 app/Hooks/Handlers/AdminMenu.php:211
 msgid "Lists"
 msgstr "רשימות"
 
@@ -2913,11 +3042,11 @@ msgstr "מלטה"
 msgid "Manage Forms"
 msgstr "נהל טפסים"
 
-#: app/Services/Helper.php:174
+#: app/Services/Helper.php:173
 msgid "Manage Subscription Hyperlink HTML"
 msgstr ""
 
-#: app/Services/Helper.php:172
+#: app/Services/Helper.php:170
 msgid "Manage Subscription URL"
 msgstr "נהל את כתובת האתר למנוי"
 
@@ -2965,7 +3094,7 @@ msgstr "מגבלת דוא\"ל מקסימלית לשנייה"
 msgid "Mayotte"
 msgstr "מיוט"
 
-#: app/Functions/helpers.php:361
+#: app/Functions/helpers.php:362
 msgid "Meeting"
 msgstr ""
 
@@ -3026,11 +3155,19 @@ msgstr "מוזמביק"
 msgid "Myanmar"
 msgstr ""
 
+#: app/Services/TransStrings.php:665
+msgid "MyAwesomeBusiness Inc."
+msgstr ""
+
 #: app/Services/TransStrings.php:354
 msgid "Name"
 msgstr "שֵׁם"
 
-#: app/Services/Helper.php:131 app/Services/Funnel/FunnelHelper.php:145
+#: app/Services/TransStrings.php:674
+msgid "Name of this key"
+msgstr ""
+
+#: app/Services/Helper.php:129 app/Services/Funnel/FunnelHelper.php:145
 msgid "Name Prefix"
 msgstr "קידומת שם"
 
@@ -3154,7 +3291,7 @@ msgstr "לא"
 msgid "No Contacts Found"
 msgstr "לא נמצאו אנשי קשר"
 
-#: app/Http/Controllers/FunnelController.php:465
+#: app/Http/Controllers/FunnelController.php:512
 msgid "No Corresponding report found"
 msgstr "לא נמצא דו\"ח מקביל"
 
@@ -3230,23 +3367,27 @@ msgstr ""
 msgid "Not Equal"
 msgstr ""
 
-#: app/Functions/helpers.php:358 app/Services/TransStrings.php:379
+#: app/Functions/helpers.php:359 app/Services/TransStrings.php:379
 msgid "Note"
 msgstr "פתק"
 
-#: app/Http/Controllers/SubscriberController.php:405
+#: app/Services/TransStrings.php:702
+msgid "Note (Optional)"
+msgstr ""
+
+#: app/Http/Controllers/SubscriberController.php:414
 msgid "Note successfully added"
 msgstr "ההערה נוספה בהצלחה"
 
-#: app/Http/Controllers/SubscriberController.php:433
+#: app/Http/Controllers/SubscriberController.php:442
 msgid "Note successfully deleted"
 msgstr "ההערה נמחקה בהצלחה"
 
-#: app/Http/Controllers/SubscriberController.php:424
+#: app/Http/Controllers/SubscriberController.php:433
 msgid "Note successfully updated"
 msgstr "ההערה עודכנה בהצלחה"
 
-#: app/Services/Helper.php:112
+#: app/Services/Helper.php:110
 msgid "Notes & Activities"
 msgstr "הערות ופעילויות"
 
@@ -3282,11 +3423,11 @@ msgstr ""
 msgid "Order Status Changed"
 msgstr ""
 
-#: app/Hooks/Handlers/ExternalPages.php:248
+#: app/Hooks/Handlers/ExternalPages.php:255
 msgid "Other (fill in reason below)"
 msgstr "אחר (מלא את הסיבה למטה)"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:151
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:162
 msgid "Other Fields"
 msgstr "תחומים אחרים"
 
@@ -3294,7 +3435,7 @@ msgstr "תחומים אחרים"
 msgid "Overall Conversion Rate"
 msgstr "שיעור המרות כולל"
 
-#: app/Services/Helper.php:75
+#: app/Services/Helper.php:73
 msgid "Overview"
 msgstr "סקירה כללית"
 
@@ -3358,7 +3499,7 @@ msgstr "הפיליפינים"
 msgid "Phone"
 msgstr "טלפון"
 
-#: app/Services/Helper.php:143
+#: app/Services/Helper.php:141
 msgid "Phone Number"
 msgstr "מספר טלפון"
 
@@ -3374,11 +3515,11 @@ msgstr "בחר תאריך"
 msgid "Pitcairn"
 msgstr "פיטקארן"
 
-#: app/Services/Helper.php:257
+#: app/Services/Helper.php:256
 msgid "Plain Centered"
 msgstr "ממוקד רגיל"
 
-#: app/Services/Helper.php:264
+#: app/Services/Helper.php:263
 msgid "Plain Left"
 msgstr ""
 
@@ -3402,7 +3543,7 @@ msgstr "אנא אל תסגור חלון זה."
 msgid "Please fill up all the fields"
 msgstr "אנא מלא את כל השדות"
 
-#: app/Hooks/Handlers/ExternalPages.php:221
+#: app/Hooks/Handlers/ExternalPages.php:228
 msgid "Please let us know a reason"
 msgstr "אנא ציין סיבה"
 
@@ -3434,6 +3575,10 @@ msgstr "אנא ספק כותרת טופס"
 msgid "Please provide a name so you can identify easily"
 msgstr "אנא ספק שם כדי שתוכל להזדהות בקלות"
 
+#: app/Http/Controllers/SettingsController.php:98
+msgid "Please provide details after a contact confirm double option from email"
+msgstr ""
+
 #: app/Services/TransStrings.php:88
 msgid "Please provide email Body."
 msgstr "אנא ספק גוף דואר אלקטרוני."
@@ -3442,7 +3587,7 @@ msgstr "אנא ספק גוף דואר אלקטרוני."
 msgid "Please provide email body."
 msgstr "אנא ספק גוף דוא\"ל."
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:46
+#: app/Services/Funnel/Actions/SendEmailAction.php:47
 msgid "Please provide email details that you want to send"
 msgstr "אנא ספק פרטי דוא\"ל שברצונך לשלוח"
 
@@ -3526,7 +3671,7 @@ msgstr "פּוֹלִין"
 msgid "Portugal"
 msgstr "פּוֹרטוּגָל"
 
-#: app/Services/TransStrings.php:392 app/Services/Helper.php:141
+#: app/Services/TransStrings.php:392 app/Services/Helper.php:139
 #: app/Services/Funnel/FunnelHelper.php:157
 msgid "Postal Code"
 msgstr "מיקוד"
@@ -3555,7 +3700,7 @@ msgstr "טקסט תצוגה מקדימה:"
 msgid "Preview The form"
 msgstr "תצוגה מקדימה של הטופס"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:121
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:132
 msgid "Primary Fields"
 msgstr "שדות ראשוניים"
 
@@ -3598,7 +3743,7 @@ msgstr ""
 msgid "Provided email already assigned to another subscriber."
 msgstr "דוא\"ל שסופק כבר הוקצה למנוי אחר."
 
-#: app/Http/Controllers/ListsController.php:139
+#: app/Http/Controllers/ListsController.php:147
 msgid "Provided Lists have been successfully created"
 msgstr "רשימות מסופקות נוצרו בהצלחה"
 
@@ -3606,11 +3751,15 @@ msgstr "רשימות מסופקות נוצרו בהצלחה"
 msgid "Public User Clicks"
 msgstr "קליקים על משתמשים ציבוריים"
 
+#: app/Services/TransStrings.php:694
+msgid "published"
+msgstr ""
+
 #: app/Hooks/Handlers/CountryNames.php:721
 msgid "Puerto Rico"
 msgstr "פוארטו ריקו"
 
-#: app/Services/Helper.php:88
+#: app/Services/Helper.php:86
 msgid "Purchase History"
 msgstr "היסטוריית רכישות"
 
@@ -3638,19 +3787,19 @@ msgstr "קישורים מהירים"
 msgid "Quick Overview"
 msgstr "סקירה מהירה"
 
-#: app/Functions/helpers.php:363
+#: app/Functions/helpers.php:364
 msgid "Quote: Accepted"
 msgstr ""
 
-#: app/Functions/helpers.php:364
+#: app/Functions/helpers.php:365
 msgid "Quote: Refused"
 msgstr ""
 
-#: app/Functions/helpers.php:362
+#: app/Functions/helpers.php:363
 msgid "Quote: Sent"
 msgstr ""
 
-#: app/Services/Helper.php:280
+#: app/Services/Helper.php:279
 msgid "Raw HTML"
 msgstr "HTML גולמי"
 
@@ -3661,6 +3810,10 @@ msgstr "סיבה:"
 #: app/Services/TransStrings.php:428
 msgid "Recipients"
 msgstr "נמענים"
+
+#: app/Http/Controllers/SettingsController.php:111
+msgid "Redirect to an URL"
+msgstr ""
 
 #: app/Http/Controllers/SettingsController.php:128
 #: app/Http/Controllers/SettingsController.php:129
@@ -3687,6 +3840,10 @@ msgstr "הסר מרצף"
 msgid "Remove From Tag"
 msgstr "הסר מהתג"
 
+#: app/Services/TransStrings.php:701
+msgid "Remove Lists when clicked (optional)"
+msgstr ""
+
 #: app/Services/TransStrings.php:430
 msgid "Remove Tags"
 msgstr "הסר תגים"
@@ -3694,6 +3851,10 @@ msgstr "הסר תגים"
 #: app/Services/TransStrings.php:91
 msgid "Remove Tags From Subscribers"
 msgstr "הסר תגים מנויים"
+
+#: app/Services/TransStrings.php:700
+msgid "Remove Tags when clicked (optional)"
+msgstr ""
 
 #: app/Services/Funnel/Actions/DetachListAction.php:23
 msgid "Remove this contact from the selected lists"
@@ -3731,6 +3892,14 @@ msgstr "דיווחים"
 msgid "Resend"
 msgstr "שלח שוב"
 
+#: app/Services/TransStrings.php:688
+msgid "Reset FluentCRM Database tables"
+msgstr ""
+
+#: app/Services/TransStrings.php:683
+msgid "REST API Access Management"
+msgstr ""
+
 #: app/Services/TransStrings.php:438
 msgid "Rest API Status"
 msgstr "מצב ה- API של מנוחה"
@@ -3765,7 +3934,7 @@ msgstr "הפעל אם תג כלשהו שנבחר הוסר מאיש קשר"
 msgid "Run Manually"
 msgstr "רוץ ידנית"
 
-#: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:160
+#: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:162
 msgid ""
 "Run this automation only once per contact. If unchecked then it will over-"
 "write existing flow"
@@ -3868,7 +4037,7 @@ msgstr "לוח זמנים"
 msgid "Schedule Campaign"
 msgstr "קבע קמפיין"
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:85
+#: app/Services/Funnel/Actions/SendEmailAction.php:86
 msgid "Schedule Date and Time"
 msgstr "קבע תאריך ושעה"
 
@@ -3880,7 +4049,7 @@ msgstr "תזמן את המיילים"
 msgid "Schedule this campaign"
 msgstr "קבעו קמפיין זה"
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:81
+#: app/Services/Funnel/Actions/SendEmailAction.php:82
 msgid "Schedule this email to a specific date"
 msgstr "קבעו דוא\"ל זה לתאריך מסוים"
 
@@ -3926,7 +4095,7 @@ msgstr "חפש סוג ולחץ Enter..."
 msgid "Search..."
 msgstr "חפש..."
 
-#: app/Hooks/Handlers/AdminMenu.php:213
+#: app/Hooks/Handlers/AdminMenu.php:221
 msgid "Segments"
 msgstr "פלחים"
 
@@ -3977,6 +4146,7 @@ msgid "Select Condition"
 msgstr ""
 
 #: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:87
+#: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:89
 msgid "Select Contact Property"
 msgstr "בחר נכס איש קשר"
 
@@ -3984,7 +4154,7 @@ msgstr "בחר נכס איש קשר"
 msgid "Select country"
 msgstr "בחר מדינה"
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:88
+#: app/Services/Funnel/Actions/SendEmailAction.php:89
 msgid "Select Date and Time"
 msgstr "בחר תאריך ושעה"
 
@@ -4004,13 +4174,17 @@ msgstr "בחר מקבלי דוא\"ל"
 msgid "Select Field Type"
 msgstr "בחר סוג שדה"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:112
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:123
 msgid "Select FluentCRM List"
 msgstr "בחר FluentCRM List"
 
 #: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:88
 msgid "Select Form Field"
 msgstr "בחר שדה טופס"
+
+#: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:90
+msgid "Select Form Property"
+msgstr ""
 
 #: app/Services/Funnel/Benchmarks/RemoveFromListBenchmark.php:55
 #: app/Services/Funnel/Benchmarks/ListAppliedBenchmark.php:54
@@ -4071,7 +4245,7 @@ msgid "Select Source from where you want to import your contacts"
 msgstr "בחר מקור ממנו תרצה לייבא את אנשי הקשר שלך"
 
 #: app/Services/TransStrings.php:468
-#: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:98
+#: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:100
 #: app/Services/Funnel/Triggers/UserRegistrationTrigger.php:46
 msgid "Select Status"
 msgstr "בחר סטטוס"
@@ -4095,7 +4269,7 @@ msgid "Select Tag"
 msgstr "בחר תג"
 
 #: app/Services/TransStrings.php:470
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:162
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:173
 #: app/Services/Funnel/Benchmarks/RemoveFromTagBenchmark.php:54
 #: app/Services/Funnel/Benchmarks/TagAppliedBenchmark.php:55
 #: app/Services/Funnel/Benchmarks/TagAppliedBenchmark.php:56
@@ -4108,6 +4282,10 @@ msgstr "בחר תגים"
 msgid "Select tags"
 msgstr "בחר תגים"
 
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:244
+msgid "Select Tags (remove from contact)"
+msgstr ""
+
 #: app/Services/Funnel/Actions/DetachTagAction.php:35
 msgid "Select Tags that you want to remove from targeted Contact"
 msgstr "בחר תגים שברצונך להסיר מאיש קשר ממוקד"
@@ -4116,7 +4294,7 @@ msgstr "בחר תגים שברצונך להסיר מאיש קשר ממוקד"
 msgid "Select Template"
 msgstr "בחר תבנית"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:113
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:124
 msgid "Select the FluentCRM List you would like to add your contacts to."
 msgstr "בחר את רשימת FluentCRM שאליה תרצה להוסיף את אנשי הקשר שלך."
 
@@ -4174,6 +4352,10 @@ msgstr "בחר איזה תג יתווסף לאיש הקשר"
 msgid "Select Your CSV Delimiter"
 msgstr "בחר במפריד ה- CSV שלך"
 
+#: app/Services/TransStrings.php:693
+msgid "Select Your Email Service Provider"
+msgstr ""
+
 #: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:72
 msgid "Select your form"
 msgstr "בחר את הטופס שלך"
@@ -4187,7 +4369,7 @@ msgid "Selected emails are deleted"
 msgstr "הודעות האימייל שנבחרו נמחקות"
 
 #: app/Http/Controllers/ReportingController.php:62
-#: app/Http/Controllers/SubscriberController.php:387
+#: app/Http/Controllers/SubscriberController.php:396
 msgid "Selected emails has been deleted"
 msgstr "הודעות האימייל שנבחרו נמחקו"
 
@@ -4225,7 +4407,7 @@ msgstr "שלח אימייל לקמפיין"
 
 #: app/Services/TransStrings.php:484
 #: app/Services/Funnel/Actions/SendEmailAction.php:28
-#: app/Services/Funnel/Actions/SendEmailAction.php:45
+#: app/Services/Funnel/Actions/SendEmailAction.php:46
 msgid "Send Custom Email"
 msgstr "שלח דוא\"ל בהתאמה אישית"
 
@@ -4241,7 +4423,7 @@ msgstr "שלח דוא\"ל כפול אופטין לאנשי קשר חדשים"
 msgid "Send Email"
 msgstr "שלח אימייל"
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:51
+#: app/Services/Funnel/Actions/SendEmailAction.php:52
 msgid "Send Email to"
 msgstr "שלח דוא\"ל אל"
 
@@ -4257,15 +4439,15 @@ msgstr "שלח או תזמן מיילים של קמפיינים"
 msgid "Send the emails right now"
 msgstr "שלח את המיילים כבר עכשיו"
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:59
+#: app/Services/Funnel/Actions/SendEmailAction.php:60
 msgid "Send to Custom Email Address"
 msgstr "שלח לכתובת דוא\"ל מותאמת אישית"
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:66
+#: app/Services/Funnel/Actions/SendEmailAction.php:67
 msgid "Send To Email Addresses (If Custom)"
 msgstr "שלח לכתובות דוא\"ל (אם מותאם אישית)"
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:55
+#: app/Services/Funnel/Actions/SendEmailAction.php:56
 msgid "Send To the contact"
 msgstr "שלח לאיש הקשר"
 
@@ -4293,8 +4475,8 @@ msgstr "סדר פעולות"
 msgid "Sequence Subscribers"
 msgstr "מנויי רצף"
 
-#: app/Http/Controllers/FunnelController.php:178
-#: app/Hooks/Handlers/FunnelHandler.php:181
+#: app/Http/Controllers/FunnelController.php:225
+#: app/Hooks/Handlers/FunnelHandler.php:180
 msgid "Sequence successfully updated"
 msgstr "הרצף עודכן בהצלחה"
 
@@ -4310,7 +4492,7 @@ msgstr "סרביה"
 msgid "Set Custom From Name and Email"
 msgstr "הגדר מותאם אישית לפי שם וכתובת אימייל"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:49
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:55
 msgid "Set FluentCRM"
 msgstr "הגדר FluentCRM"
 
@@ -4318,7 +4500,7 @@ msgstr "הגדר FluentCRM"
 msgid "Set Sequence Emails"
 msgstr "הגדר הודעות דוא\"ל ברצף"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:172
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:183
 msgid "Set Tag"
 msgstr "הגדר תג"
 
@@ -4327,7 +4509,7 @@ msgid "Set up your schedule"
 msgstr "הגדר את לוח הזמנים שלך"
 
 #: app/Services/Stats.php:109 app/Hooks/Handlers/AdminMenu.php:115
-#: app/Hooks/Handlers/AdminMenu.php:116 app/Hooks/Handlers/AdminMenu.php:273
+#: app/Hooks/Handlers/AdminMenu.php:116 app/Hooks/Handlers/AdminMenu.php:281
 msgid "Settings"
 msgstr "הגדרות"
 
@@ -4359,6 +4541,10 @@ msgstr "קוד קצר"
 msgid "Show Individual Emails"
 msgstr "הראה הודעות אימייל בודדות"
 
+#: app/Http/Controllers/SettingsController.php:107
+msgid "Show Message"
+msgstr ""
+
 #: app/Services/TransStrings.php:502
 msgid "Show Subscribers"
 msgstr "הצג מנויים"
@@ -4371,7 +4557,7 @@ msgstr "סיירה לאון"
 msgid "Sign me up for the newsletter!"
 msgstr ""
 
-#: app/Services/Helper.php:250
+#: app/Services/Helper.php:249
 msgid "Simple Boxed"
 msgstr "Boxed Simple"
 
@@ -4383,7 +4569,7 @@ msgstr "טופס הצטרפות פשוט"
 msgid "Singapore"
 msgstr "סינגפור"
 
-#: app/Services/Helper.php:170
+#: app/Services/Helper.php:168
 msgid "Site URL"
 msgstr "כתובת אתר"
 
@@ -4391,9 +4577,13 @@ msgstr "כתובת אתר"
 msgid "Skip if already in DB"
 msgstr "דלג אם כבר ב- DB"
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:179
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:190
 msgid "Skip if contact already exist in FluentCRM"
 msgstr "דלג אם איש קשר כבר קיים ב- FluentCRM"
+
+#: app/Services/Funnel/Actions/SendEmailAction.php:99
+msgid "Skip sending email if date is overdued"
+msgstr ""
 
 #: app/Services/Funnel/FunnelHelper.php:36
 msgid "Skip this automation if contact already exist"
@@ -4435,7 +4625,7 @@ msgstr ""
 "SmartLinks מאפשרים לך לתייג ולפלג את המנויים שלך כאשר הם לוחצים על קישור "
 "באימייל, באתר שלך או בכל מקום אחר!"
 
-#: app/Hooks/Handlers/AdminMenu.php:126 app/Hooks/Handlers/AdminMenu.php:127
+#: app/Hooks/Handlers/AdminMenu.php:134 app/Hooks/Handlers/AdminMenu.php:135
 msgid "SMTP"
 msgstr ""
 
@@ -4467,7 +4657,7 @@ msgstr "מצטערים לא נמצא איש קשר"
 msgid "Sorry no links found that contacts clicked"
 msgstr "מצטערים, לא נמצאו קישורים שאנשי קשר לחצו עליהם"
 
-#: app/Hooks/Handlers/ExternalPages.php:598
+#: app/Hooks/Handlers/ExternalPages.php:609
 msgid "Sorry! No subscriber found in the database"
 msgstr "מצטער! לא נמצא מנוי במסד הנתונים"
 
@@ -4475,19 +4665,20 @@ msgstr "מצטער! לא נמצא מנוי במסד הנתונים"
 msgid "Sorry! No subscribers found based on your selection"
 msgstr "מצטער! לא נמצאו מנויים על סמך בחירתך"
 
-#: app/Hooks/Handlers/ExternalPages.php:201
+#: app/Hooks/Handlers/ExternalPages.php:208
 msgid "Sorry! This is not a valid unsubscribe url"
 msgstr "מצטער! זו אינה כתובת אתר חוקית לביטול המנוי"
 
-#: app/Hooks/Handlers/ExternalPages.php:193
+#: app/Hooks/Handlers/ExternalPages.php:200
 msgid "Sorry! This is not a valid unsubscribe url. Please try again"
 msgstr "מצטער! זו אינה כתובת אתר חוקית לביטול המנוי. בבקשה נסה שוב"
 
-#: app/Http/Controllers/SetupController.php:55
+#: app/Http/Controllers/SetupController.php:56
+#: app/Http/Controllers/SetupController.php:74
 msgid "Sorry! you do not have permission to install plugin"
 msgstr "מצטער! אין לך הרשאה להתקין תוסף"
 
-#: app/Hooks/Handlers/ExternalPages.php:260
+#: app/Hooks/Handlers/ExternalPages.php:267
 msgid "Sorry, No email found based on your data"
 msgstr "מצטערים, לא נמצא דוא\"ל על סמך הנתונים שלך"
 
@@ -4504,7 +4695,7 @@ msgstr "מצטערים, לא נמצאו מנויים על בסיס המסנני�
 msgid "Sorry, You do not have admin permission to reset database"
 msgstr "מצטערים, אין לך הרשאת מנהל לאיפוס מסד הנתונים"
 
-#: app/Hooks/Handlers/FunnelHandler.php:168
+#: app/Hooks/Handlers/FunnelHandler.php:167
 msgid "Sorry, You do not have permission to do this action"
 msgstr "מצטערים, אין לך הרשאה לבצע פעולה זו"
 
@@ -4560,7 +4751,7 @@ msgstr "להתחיל מחדש"
 msgid "Starts With"
 msgstr ""
 
-#: app/Services/TransStrings.php:518 app/Services/Helper.php:140
+#: app/Services/TransStrings.php:518 app/Services/Helper.php:138
 #: app/Services/Funnel/FunnelHelper.php:165
 msgid "State"
 msgstr "מדינה"
@@ -4569,7 +4760,7 @@ msgstr "מדינה"
 msgid "Stats"
 msgstr "סטטיסטיקה"
 
-#: app/Services/TransStrings.php:520 app/Services/Helper.php:144
+#: app/Services/TransStrings.php:520 app/Services/Helper.php:142
 msgid "Status"
 msgstr "סטָטוּס"
 
@@ -4577,7 +4768,7 @@ msgstr "סטָטוּס"
 msgid "Status for the new subscribers"
 msgstr "סטטוס למנויים החדשים"
 
-#: app/Http/Controllers/FunnelController.php:479
+#: app/Http/Controllers/FunnelController.php:526
 #, php-format
 msgid "Status has been updated to %s"
 msgstr "הסטטוס עודכן ל-%s"
@@ -4634,7 +4825,7 @@ msgstr "מנויים"
 msgid "subscribed contacts"
 msgstr "אנשי קשר מנויים"
 
-#: app/Http/Controllers/FunnelController.php:430
+#: app/Http/Controllers/FunnelController.php:477
 msgid "Subscribed has been removed from this automation funnel"
 msgstr "המנוי הוסר ממשפך האוטומציה הזה"
 
@@ -4646,11 +4837,11 @@ msgstr "מָנוּי"
 msgid "Subscriber Clicks"
 msgstr "קליקים על מנויים"
 
-#: app/Hooks/Handlers/ExternalPages.php:360
+#: app/Hooks/Handlers/ExternalPages.php:367
 msgid "Subscriber confirmed double opt-in from IP Address:"
 msgstr ""
 
-#: app/Hooks/Handlers/ExternalPages.php:359
+#: app/Hooks/Handlers/ExternalPages.php:366
 msgid "Subscriber double opt-in confirmed"
 msgstr ""
 
@@ -4658,11 +4849,11 @@ msgstr ""
 msgid "Subscriber Fields"
 msgstr "שדות מנויים"
 
-#: app/Http/Controllers/SubscriberController.php:307
+#: app/Http/Controllers/SubscriberController.php:315
 msgid "Subscriber successfully updated"
 msgstr "המנוי עודכן בהצלחה"
 
-#: app/Http/Controllers/SubscriberController.php:514
+#: app/Http/Controllers/SubscriberController.php:523
 msgid "Subscriber's status need to be subscribed."
 msgstr "על סטטוס המנוי להיות רשום כמנוי"
 
@@ -4690,12 +4881,12 @@ msgstr "מנויים מיובאים בהצלחה."
 msgid "Subscription Form"
 msgstr "טופס הרשמה"
 
-#: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:97
+#: app/Services/Funnel/Triggers/FluentFormSubmissionTrigger.php:99
 #: app/Services/Funnel/Triggers/UserRegistrationTrigger.php:45
 msgid "Subscription Status"
 msgstr "מצב המנוי"
 
-#: app/Http/Controllers/FunnelController.php:455
+#: app/Http/Controllers/FunnelController.php:502
 msgid "Subscription status is required"
 msgstr "סטטוס מנוי נדרש"
 
@@ -4703,7 +4894,7 @@ msgstr "סטטוס מנוי נדרש"
 msgid "Successfully added the subscriber."
 msgstr "הוסיף בהצלחה את המנוי."
 
-#: app/Http/Controllers/ListsController.php:155
+#: app/Http/Controllers/ListsController.php:163
 msgid "Successfully removed the list."
 msgstr "הסיר את הרשימה בהצלחה."
 
@@ -4732,7 +4923,7 @@ msgstr "הצעת ערך: בין 600 ל 800"
 msgid "Sunday"
 msgstr ""
 
-#: app/Services/Helper.php:105
+#: app/Services/Helper.php:103
 msgid "Support Tickets"
 msgstr "כרטיסי תמיכה"
 
@@ -4788,7 +4979,7 @@ msgid "Tag Removed From Contact"
 msgstr "התג הוסר מאיש קשר"
 
 #: app/Services/Stats.php:40 app/Services/TransStrings.php:640
-#: app/Hooks/Handlers/AdminMenu.php:208
+#: app/Hooks/Handlers/AdminMenu.php:216
 msgid "Tags"
 msgstr "תגיות"
 
@@ -4820,6 +5011,10 @@ msgstr "טג'יקיסטן"
 msgid "Tanzania"
 msgstr "טנזניה"
 
+#: app/Services/TransStrings.php:697
+msgid "Target Full URL"
+msgstr ""
+
 #: app/Services/TransStrings.php:533
 msgid "Target URL"
 msgstr "כתובת אתר של יעד"
@@ -4845,16 +5040,16 @@ msgstr "כותרת התבנית"
 msgid "Thailand"
 msgstr "תאילנד"
 
-#: app/Hooks/Handlers/AdminMenu.php:152
+#: app/Hooks/Handlers/AdminMenu.php:160
 #, php-format
 msgid "Thank you for using <a href=\"%s\">FluentCRM</a>"
 msgstr ""
 
-#: app/Hooks/Handlers/ExternalPages.php:244
+#: app/Hooks/Handlers/ExternalPages.php:251
 msgid "The emails are inappropriate"
 msgstr "המיילים אינם הולמים"
 
-#: app/Hooks/Handlers/ExternalPages.php:245
+#: app/Hooks/Handlers/ExternalPages.php:252
 msgid "The emails are spam"
 msgstr "המיילים הם דואר זבל"
 
@@ -4862,11 +5057,11 @@ msgstr "המיילים הם דואר זבל"
 msgid "The emails will be sent based on your set date and time."
 msgstr "הודעות הדוא\"ל יישלחו בהתבסס על התאריך והשעה שהגדרתם."
 
-#: app/Http/Controllers/CsvController.php:33
+#: app/Http/Controllers/CsvController.php:32
 msgid "The file must be a valid CSV."
 msgstr "הקובץ חייב להיות CSV תקף."
 
-#: app/Hooks/Handlers/ExternalPages.php:630
+#: app/Hooks/Handlers/ExternalPages.php:641
 msgid ""
 "The new email has been used to another account. Please use a new email "
 "address"
@@ -4876,7 +5071,7 @@ msgstr "האימייל החדש שימש לחשבון אחר. אנא השתמש 
 msgid "The provided hook name is not valid"
 msgstr "שם הוו שצוין אינו חוקי"
 
-#: app/Http/Controllers/FunnelController.php:471
+#: app/Http/Controllers/FunnelController.php:518
 msgid "The status already completed state"
 msgstr "המצב כבר הושלם"
 
@@ -5142,7 +5337,7 @@ msgstr "סה\"כ דילג (כולל לא חוקי):"
 msgid "Total Updated:"
 msgstr "סה\"כ עודכן:"
 
-#: app/Functions/helpers.php:369
+#: app/Functions/helpers.php:370
 msgid "Transaction"
 msgstr ""
 
@@ -5178,13 +5373,17 @@ msgstr "איי טורקס וקאיקוס"
 msgid "Tuvalu"
 msgstr "טובאלו"
 
-#: app/Functions/helpers.php:371
+#: app/Functions/helpers.php:372
 msgid "Tweet"
 msgstr ""
 
 #: app/Services/TransStrings.php:548
 msgid "Type"
 msgstr "סוּג"
+
+#: app/Services/TransStrings.php:675
+msgid "Type and Enter..."
+msgstr ""
 
 #: app/Hooks/Handlers/AdminBar.php:66
 msgid "Type and press enter"
@@ -5229,18 +5428,18 @@ msgstr ""
 msgid "United States (US) Minor Outlying Islands"
 msgstr ""
 
-#: includes/Parser/ShortcodeParser.php:116
-#: app/Hooks/Handlers/ExternalPages.php:218
-#: app/Hooks/Handlers/ExternalPages.php:222
+#: includes/Parser/ShortcodeParser.php:113
+#: app/Hooks/Handlers/ExternalPages.php:225
+#: app/Hooks/Handlers/ExternalPages.php:229
 #: app/views/external/unsubscribe.php:8
 msgid "Unsubscribe"
 msgstr "בטל את הרישום"
 
-#: app/Services/Helper.php:173
+#: app/Services/Helper.php:172
 msgid "Unsubscribe Hyperlink HTML"
 msgstr ""
 
-#: app/Services/Helper.php:171
+#: app/Services/Helper.php:169
 msgid "Unsubscribe URL"
 msgstr "בטל את הרישום לכתובת האתר"
 
@@ -5299,6 +5498,10 @@ msgstr "עדכן מנויים"
 msgid "Update your preferences"
 msgstr "עדכן את ההעדפות שלך"
 
+#: app/Services/TransStrings.php:666
+msgid "Upload"
+msgstr ""
+
 #: app/Services/TransStrings.php:559
 msgid "Upload CSV"
 msgstr "העלה CSV"
@@ -5315,7 +5518,7 @@ msgstr "כתובת אתר"
 msgid "Uruguay"
 msgstr "אורוגוואי"
 
-#: app/Services/Funnel/Actions/SendEmailAction.php:68
+#: app/Services/Funnel/Actions/SendEmailAction.php:69
 msgid "Use comma separated values for multiple"
 msgstr "השתמש בערכים המופרדים בפסיקים למספר רב"
 
@@ -5341,7 +5544,7 @@ msgstr "דוא\"ל משתמש"
 msgid "User Email Address"
 msgstr "כתובת דוא\"ל של משתמש"
 
-#: app/Services/TransStrings.php:566 app/Services/Helper.php:136
+#: app/Services/TransStrings.php:566 app/Services/Helper.php:134
 msgid "User ID"
 msgstr "תעודת זהות של משתמש"
 
@@ -5396,6 +5599,10 @@ msgstr "צפו בהגדרות השירות למשלוח דוא\"ל"
 #: app/Services/TransStrings.php:580
 msgid "View Emails"
 msgstr "צפה באימיילים"
+
+#: app/Services/Helper.php:171
+msgid "View On Browser URL"
+msgstr ""
 
 #: app/Http/Controllers/CampaignAnalyticsController.php:87
 #: app/Hooks/Handlers/PurchaseHistory.php:38
@@ -5453,7 +5660,7 @@ msgstr "וואליס ופוטונה"
 msgid "Warning"
 msgstr "אַזהָרָה"
 
-#: app/Hooks/Handlers/ExternalPages.php:219
+#: app/Hooks/Handlers/ExternalPages.php:226
 msgid ""
 "We're sorry to see you go! Enter your email address to unsubscribe from this "
 "list."
@@ -5481,7 +5688,7 @@ msgstr "סהרה המערבית"
 msgid "When you send the emails?"
 msgstr "כשאתה שולח את המיילים?"
 
-#: app/Services/Helper.php:340
+#: app/Services/Helper.php:339
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
@@ -5489,7 +5696,7 @@ msgstr "WooCommerce"
 msgid "Woocommerce Checkout Subscription Field"
 msgstr ""
 
-#: app/Services/Helper.php:339
+#: app/Services/Helper.php:338
 msgid "Woocommerce Purchase History"
 msgstr "היסטוריית רכישות Woocommerce "
 
@@ -5497,7 +5704,7 @@ msgstr "היסטוריית רכישות Woocommerce "
 msgid "WordPress Users"
 msgstr "משתמשי WordPress"
 
-#: app/Services/Helper.php:354
+#: app/Services/Helper.php:353
 msgid "WP Pay Forms"
 msgstr "טפסי תשלום של WP"
 
@@ -5509,7 +5716,7 @@ msgstr ""
 msgid "WP Users"
 msgstr "משתמשי WP"
 
-#: app/Services/Helper.php:353
+#: app/Services/Helper.php:352
 msgid "WPPayForm Purchase History"
 msgstr "היסטוריית הרכישות WPPayForm"
 
@@ -5521,6 +5728,10 @@ msgstr "תֵימָן"
 msgid "Yes"
 msgstr "כן"
 
+#: app/Services/TransStrings.php:687
+msgid "Yes, Delete and Reset All CRM Data"
+msgstr ""
+
 #: app/Services/TransStrings.php:591
 msgid "Yes, I want to delete Old Logs"
 msgstr "כן, אני רוצה למחוק יומנים ישנים"
@@ -5529,7 +5740,7 @@ msgstr "כן, אני רוצה למחוק יומנים ישנים"
 msgid "You are successfully subscribed to our email list"
 msgstr "נרשמת בהצלחה לרשימת הדוא\"ל שלנו"
 
-#: app/Hooks/Handlers/ExternalPages.php:304
+#: app/Hooks/Handlers/ExternalPages.php:311
 msgid "You are successfully unsubscribed from the email list"
 msgstr "ביטלת את הרישום בהצלחה מרשימת הדוא\"ל"
 
@@ -5569,7 +5780,7 @@ msgstr "דוא\"ל הקמפיין שלך נקבע"
 msgid "Your double-optin email subject"
 msgstr "נושא הדואר האלקטרוני שלך עם opt-optin"
 
-#: app/Hooks/Handlers/ExternalPages.php:220
+#: app/Hooks/Handlers/ExternalPages.php:227
 #: app/views/external/manage_subscription_form.php:8
 msgid "Your Email Address"
 msgstr "כתובת המייל שלך"
@@ -5578,7 +5789,7 @@ msgstr "כתובת המייל שלך"
 msgid "Your emails are sending right now...."
 msgstr "האימיילים שלך נשלחים עכשיו ...."
 
-#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:106
+#: app/Services/ExternalIntegrations/FluentForm/Bootstrap.php:117
 msgid "Your Feed Name"
 msgstr "שם הפיד שלך"
 
@@ -5590,13 +5801,17 @@ msgstr "הטופס שלך נוצר בהצלחה"
 msgid "Your Note Title"
 msgstr "כותרת ההערה שלך"
 
-#: app/Hooks/Handlers/ExternalPages.php:674
+#: app/Hooks/Handlers/ExternalPages.php:685
 msgid "Your provided information has been successfully updated"
 msgstr "המידע שסיפקת עודכן בהצלחה"
 
 #: app/Services/TransStrings.php:232
 msgid "Your provided priority will be converted to percent and it's relative"
 msgstr "העדיפות שהזנתם תומר לאחוזים והיא יחסית"
+
+#: app/Services/TransStrings.php:696
+msgid "Your target URL"
+msgstr ""
 
 #: app/Hooks/Handlers/CountryNames.php:1005
 msgid "Zambia"

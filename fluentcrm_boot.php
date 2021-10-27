@@ -6,7 +6,7 @@ define('FLUENTCRM', 'fluentcrm');
 define('FLUENTCRM_UPLOAD_DIR', '/fluentcrm');
 define('FLUENTCRM_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('FLUENTCRM_PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('FLUENTCRM_PLUGIN_VERSION', '2.2.2');
+define('FLUENTCRM_PLUGIN_VERSION', '2.3.0');
 
 spl_autoload_register(function ($class) {
     $match = 'FluentCrm';
@@ -54,4 +54,3 @@ add_action('fluentcrm_loaded', function () {
 include 'includes/WPFluent/wpfluent.php';
 include 'includes/WPOrm/autoload.php';
 include 'includes/fluentvalidator/fluentvalidator.php';
-include 'includes/Libs/csv/autoload.php';

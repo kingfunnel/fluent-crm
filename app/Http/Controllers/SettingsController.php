@@ -94,8 +94,8 @@ class SettingsController extends Controller
                 ],
                 'confirmation_html_viewer' => [
                     'type'    => 'html-viewer',
-                    'heading' => 'After Confirmation Actions',
-                    'info'    => 'Please provide details after a contact confirm double option from email<hr />'
+                    'heading' => __('After Confirmation Actions', 'fluent-crm'),
+                    'info'    => __('Please provide details after a contact confirm double option from email', 'fluent-crm').'<hr />'
                 ],
                 'after_confirmation_type'  => [
                     'type'    => 'input-radio',
@@ -104,11 +104,11 @@ class SettingsController extends Controller
                     'options' => [
                         [
                             'id'    => 'message',
-                            'label' => 'Show Message'
+                            'label' => __('Show Message', 'fluent-crm')
                         ],
                         [
                             'id'    => 'redirect',
-                            'label' => 'Redirect to an URL'
+                            'label' => __('Redirect to an URL', 'fluent-crm')
                         ]
                     ]
                 ],
@@ -253,35 +253,35 @@ class SettingsController extends Controller
             ],
             'mailgun'   => [
                 'label'       => 'Mailgun',
-                'webhook_url' => get_rest_url(null, 'fluent-crm/v2/public/bounce_handler/mailgun/' . $securityCode),
+                'webhook_url' => get_rest_url(null, 'fluent-crm/v2/public/bounce_handler/mailgun/handle/' . $securityCode),
                 'doc_url'     => 'https://fluentcrm.com/docs/bounce-handling-with-mailgun/',
                 'input_title' => 'Mailgun Bounce Handler Webhook URL',
                 'input_info' => 'Please paste this URL into your Mailgun\'s Webhook settings to enable Bounce Handling with FluentCRM'
             ],
             'pepipost'  => [
                 'label'       => 'PepiPost',
-                'webhook_url' => get_rest_url(null, 'fluent-crm/v2/public/bounce_handler/pepipost/' . $securityCode),
+                'webhook_url' => get_rest_url(null, 'fluent-crm/v2/public/bounce_handler/pepipost/handle/' . $securityCode),
                 'doc_url'     => 'https://fluentcrm.com/docs/bounce-handling-with-pepipost/',
                 'input_title' => 'PepiPost Bounce Handler Webhook URL',
                 'input_info' => 'Please paste this URL into your PepiPost\'s Webhook settings to enable Bounce Handling with FluentCRM'
             ],
             'postmark'  => [
                 'label'       => 'PostMark',
-                'webhook_url' => get_rest_url(null, 'fluent-crm/v2/public/bounce_handler/postmark/' . $securityCode),
+                'webhook_url' => get_rest_url(null, 'fluent-crm/v2/public/bounce_handler/postmark/handle/' . $securityCode),
                 'doc_url'     => 'https://fluentcrm.com/docs/bounce-handling-with-postmark/',
                 'input_title' => 'PostMark Bounce Handler Webhook URL',
                 'input_info' => 'Please paste this URL into your PostMark\'s Webhook settings to enable Bounce Handling with FluentCRM'
             ],
             'sendgrid'  => [
                 'label'       => 'SendGrid',
-                'webhook_url' => get_rest_url(null, 'fluent-crm/v2/public/bounce_handler/sendgrid/' . $securityCode),
+                'webhook_url' => get_rest_url(null, 'fluent-crm/v2/public/bounce_handler/sendgrid/handle/' . $securityCode),
                 'doc_url'     => 'https://fluentcrm.com/docs/bounce-handling-with-sendgrid/',
                 'input_title' => 'SendGrid Bounce Handler Webhook URL',
                 'input_info' => 'Please paste this URL into your SendGrid\'s Webhook settings to enable Bounce Handling with FluentCRM'
             ],
             'sparkpost' => [
                 'label'       => 'SparkPost',
-                'webhook_url' => get_rest_url(null, 'fluent-crm/v2/public/bounce_handler/sparkpost/' . $securityCode),
+                'webhook_url' => get_rest_url(null, 'fluent-crm/v2/public/bounce_handler/sparkpost/handle/' . $securityCode),
                 'doc_url'     => 'https://fluentcrm.com/docs/bounce-handling-with-sparkpost/',
                 'input_title' => 'SparkPost Bounce Handler Webhook URL',
                 'input_info' => 'Please paste this URL into your SparkPost\'s Webhook settings to enable Bounce Handling with FluentCRM'

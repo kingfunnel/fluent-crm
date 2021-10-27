@@ -114,6 +114,7 @@ $app->group(function ($app) {
     $app->get('{id}/status', 'CampaignController@getCampaignStatus')->int('id');
     $app->get('{id}/link-report', 'CampaignAnalyticsController@getLinksReport')->int('id');
     $app->get('{id}/revenues', 'CampaignAnalyticsController@getRevenueReport')->int('id');
+    $app->get('{id}/unsubscribers', 'CampaignAnalyticsController@getUnsubscribers')->int('id');
 
 })->prefix('campaigns')->withPolicy('CampaignPolicy');
 
@@ -140,6 +141,9 @@ $app->group(function ($app) {
     $app->post('/', 'FunnelController@create');
     $app->post('import', 'FunnelController@importFunnel');
 
+    $app->get('triggers', 'FunnelController@getTriggersRest');
+    $app->put('{id}/change-trigger', 'FunnelController@changeTrigger')->int('id');
+
     $app->get('subscriber/{subscriber_id}/automations', 'FunnelController@subscriberAutomations');
 
     $app->get('{id}', 'FunnelController@getFunnel')->int('id');
@@ -149,6 +153,7 @@ $app->group(function ($app) {
     $app->delete('{id}/subscribers', 'FunnelController@deleteSubscribers')->int('id');
     $app->delete('{id}', 'FunnelController@delete')->int('id');
     $app->get('{id}/report', 'FunnelController@report')->int('id');
+
 
     $app->get('{id}/email_reports', 'FunnelController@getEmailReports')->int('id');
 
@@ -187,6 +192,7 @@ $app->group(function ($app) {
 
     $app->post('install-fluentform', 'SetupController@handleFluentFormInstall');
     $app->post('install-fluentsmtp', 'SetupController@handleFluentSmtpInstall');
+    $app->post('install-fluentconnect', 'SetupController@handleFluentConnectInstall');
 
     $app->get('bounce_configs', 'SettingsController@getBounceConfigs');
 
@@ -237,6 +243,10 @@ $app->group(function ($app) {
     $app->post('csv-upload', 'CsvController@upload');
     $app->post('csv-import', 'CsvController@import');
 
+    $app->get('drivers', 'ImporterController@getDrivers');
+    $app->get('drivers/{driver}', 'ImporterController@getDriver')->alphaNumDash('driver');
+    $app->post('drivers/{driver}', 'ImporterController@importData')->alphaNumDash('driver');
+
 })->prefix('import')->withPolicy('UsersPolicy');
 
 
@@ -258,6 +268,7 @@ $app->group(function ($app) {
 $app->group(function ($app) {
 
     $app->get('/', 'DocsController@index');
+    $app->get('/addons', 'DocsController@getAddons');
 
 })->prefix('docs')->withPolicy('SettingsPolicy');
 
@@ -267,6 +278,10 @@ $app->group(function ($app) {
 $app->group(function($app) {
 
     $app->any('bounce_handler/{service_name}/handle/{security_code}', 'WebhookBounceController@handleBounce')
+        ->alphaNumDash('service_name')
+        ->alphaNumDash('security_code');
+
+    $app->any('bounce_handler/{service_name}/{security_code}', 'WebhookBounceController@handleBounce')
         ->alphaNumDash('service_name')
         ->alphaNumDash('security_code');
 

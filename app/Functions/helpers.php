@@ -301,6 +301,7 @@ function fluentcrm_update_subscriber_meta($subscriberId, $key, $value)
 
     return SubscriberMeta::create([
         'key'           => $key,
+        'created_by'    => get_current_user_id(),
         'value'         => $value,
         'subscriber_id' => $subscriberId,
         'created_at'    => fluentCrmTimestamp()
@@ -347,7 +348,7 @@ function fluentcrm_subscriber_editable_statuses()
 function fluentcrm_contact_types()
 {
     return apply_filters('fluentcrm_contact_types', [
-        'lead' => __('Lead', 'fluent-crm'),
+        'lead'     => __('Lead', 'fluent-crm'),
         'customer' => __('Customer', 'fluent-crm')
     ]);
 }
@@ -461,6 +462,9 @@ function fluentCrmWillTrackIp()
 
 function fluentcrm_contact_added_to_tags($attachedTagIds, Subscriber $subscriber)
 {
+    if (defined('FLUENTCRM_DISABLE_TAG_LIST_EVENTS')) {
+        return false;
+    }
     return do_action(
         'fluentcrm_contact_added_to_tags',
         (array)$attachedTagIds,
@@ -470,6 +474,9 @@ function fluentcrm_contact_added_to_tags($attachedTagIds, Subscriber $subscriber
 
 function fluentcrm_contact_added_to_lists($attachedListIds, Subscriber $subscriber)
 {
+    if (defined('FLUENTCRM_DISABLE_TAG_LIST_EVENTS')) {
+        return false;
+    }
     return do_action(
         'fluentcrm_contact_added_to_lists',
         (array)$attachedListIds,
@@ -479,6 +486,10 @@ function fluentcrm_contact_added_to_lists($attachedListIds, Subscriber $subscrib
 
 function fluentcrm_contact_removed_from_tags($detachedTagIds, Subscriber $subscriber)
 {
+    if (defined('FLUENTCRM_DISABLE_TAG_LIST_EVENTS')) {
+        return false;
+    }
+
     return do_action(
         'fluentcrm_contact_removed_from_tags',
         (array)$detachedTagIds,
@@ -488,6 +499,10 @@ function fluentcrm_contact_removed_from_tags($detachedTagIds, Subscriber $subscr
 
 function fluentcrm_contact_removed_from_lists($detachedListIds, Subscriber $subscriber)
 {
+    if (defined('FLUENTCRM_DISABLE_TAG_LIST_EVENTS')) {
+        return false;
+    }
+
     return do_action(
         'fluentcrm_contact_removed_from_lists',
         (array)$detachedListIds,
@@ -511,7 +526,7 @@ function fluentcrm_get_current_contact()
         }
     } else {
         $fcSubscriberHash = FluentCrm\Includes\Helpers\Arr::get($_COOKIE, 'fc_s_hash');
-        if($fcSubscriberHash) {
+        if ($fcSubscriberHash) {
             $subscriber = Subscriber::where('hash', $fcSubscriberHash)->first();
         } else {
             // @todo: We will remove this after february
@@ -647,6 +662,7 @@ function fluentcrm_get_crm_profile_html($userIdOrEmail, $checkPermission = true,
             font-size: 11px;
             margin-top: 7px;
         }
+
         .fc_stats {
             list-style: none;
             margin-bottom: 20px;
@@ -671,11 +687,11 @@ function fluentcrm_get_crm_profile_html($userIdOrEmail, $checkPermission = true,
 
 function fluentcrm_maybe_disable_fsmtp_log($status, $settings)
 {
-    if(!$status) {
+    if (!$status) {
         return $status;
     }
 
-    if(isset($settings['disable_fluentcrm_logs']) && $settings['disable_fluentcrm_logs'] == 'yes') {
+    if (isset($settings['disable_fluentcrm_logs']) && $settings['disable_fluentcrm_logs'] == 'yes') {
         return false;
     }
 
@@ -686,7 +702,7 @@ function fluentcrm_maybe_disable_fsmtp_log($status, $settings)
 function fluentcrm_get_custom_contact_fields()
 {
     static $fields;
-    if($fields) {
+    if ($fields) {
         return $fields;
     }
     $fields = fluentcrm_get_option('contact_custom_fields', []);
@@ -697,24 +713,29 @@ function fluentcrm_get_custom_contact_fields()
 function fluentcrm_queue_on_background($callbackName, $payload)
 {
     $body = [
-        'payload' => $payload,
+        'payload'       => $payload,
         'callback_name' => $callbackName
     ];
 
     $args = array(
-        'timeout' => 0.1,
-        'blocking' => false,
-        'body' => $body,
-        'cookies' => $_COOKIE,
+        'timeout'   => 0.1,
+        'blocking'  => false,
+        'body'      => $body,
+        'cookies'   => $_COOKIE,
         'sslverify' => apply_filters('fluentcrm_https_local_ssl_verify', false),
     );
 
     $queryArgs = array(
         'action' => 'fluentcrm_callback_for_background',
-        'nonce' => wp_create_nonce('fluentcrm_callback_for_background'),
+        'nonce'  => wp_create_nonce('fluentcrm_callback_for_background'),
     );
 
-    $url = add_query_arg($queryArgs, admin_url( 'admin-ajax.php' ));
+    $url = add_query_arg($queryArgs, admin_url('admin-ajax.php'));
     wp_remote_post(esc_url_raw($url), $args);
     return true;
+}
+
+function fluentcrm_is_rtl()
+{
+    return apply_filters('fluentcrm_is_rtl', is_rtl());
 }

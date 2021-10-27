@@ -56,7 +56,5 @@ class ApplyListAction extends BaseAction
 
         $renewedSubscriber = Subscriber::where('id', $subscriber->id)->first();
         $renewedSubscriber->attachLists($lists);
-
-        //FunnelHelper::changeFunnelSubSequenceStatus($funnelSubscriberId, $sequence->id);
     }
 }

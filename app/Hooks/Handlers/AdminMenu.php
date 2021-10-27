@@ -118,9 +118,17 @@ class AdminMenu
                 'fluentcrm-admin#/settings',
                 array($this, 'render')
             );
+            add_submenu_page(
+                'fluentcrm-admin',
+                __('Addons', 'fluent-crm'),
+                __('Addons', 'fluent-crm'),
+                ($isAdmin) ? $dashboardPermission : 'fcrm_manage_settings',
+                'fluentcrm-admin#/add-ons',
+                array($this, 'render')
+            );
         }
 
-        if(!defined('FLUENTMAIL_PLUGIN_VERSION')) {
+        if (!defined('FLUENTMAIL_PLUGIN_VERSION')) {
             add_submenu_page(
                 'fluentcrm-admin',
                 __('SMTP', 'fluent-crm'),
@@ -149,12 +157,12 @@ class AdminMenu
     {
         add_filter('admin_footer_text', function ($content) {
             $url = 'https://fluentcrm.com';
-            return sprintf( wp_kses( __( 'Thank you for using <a href="%s">FluentCRM</a>', 'fluent-crm' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( $url ) );
+            return sprintf(wp_kses(__('Thank you for using <a href="%s">FluentCRM</a>', 'fluent-crm'), array('a' => array('href' => array()))), esc_url($url));
         });
 
         add_filter('update_footer', function ($text) {
-            if(defined('FLUENTCAMPAIGN_PLUGIN_VERSION')) {
-                return FLUENTCRM_PLUGIN_VERSION . ' & '. FLUENTCAMPAIGN_PLUGIN_VERSION;
+            if (defined('FLUENTCAMPAIGN_PLUGIN_VERSION')) {
+                return FLUENTCRM_PLUGIN_VERSION . ' & ' . FLUENTCAMPAIGN_PLUGIN_VERSION;
             }
             return FLUENTCRM_PLUGIN_VERSION;
         });
@@ -330,20 +338,17 @@ class AdminMenu
                     continue;
                 }
 
-                $isMatched = strpos($src, $themeUrl) !== false;
-
-                if ($isMatched) {
-                    wp_dequeue_script($wp_scripts->registered[$script]->handle);
-                }
+                wp_dequeue_script($wp_scripts->registered[$script]->handle);
             }
 
 
         }, 1);
 
         $app = FluentCrm();
-        $isRtl = is_rtl();
+        $isRtl = fluentcrm_is_rtl();
 
         $this->emailBuilderBlockInit();
+
         wp_enqueue_script('fluentcrm_admin_app_boot', fluentCrmMix('admin/js/boot.js'), array('jquery', 'moment'), $this->version);
         wp_enqueue_script('fluentcrm_global_admin.js', fluentCrmMix('admin/js/global_admin.js'), array('jquery'), $this->version);
 
@@ -421,22 +426,22 @@ class AdminMenu
                 'email'       => $currentUser->user_email,
                 'avatar'      => get_avatar($currentUser->user_email, 128)
             ],
-            'is_rtl'                     => is_rtl(),
-            'icons' => [
+            'is_rtl'                     => fluentcrm_is_rtl(),
+            'icons'                      => [
                 'trigger_icon' => fluentCrmMix('images/funnel_icons/trigger.svg')
             ],
-            'funnel_cat_icons' => [
-                'wordpresstriggers' => fluentCrmMix('images/funnel_icons/wordpress.svg'),
-                'woocommerce' => fluentCrmMix('images/funnel_icons/woocommerce.svg'),
-                'lifterlms' => fluentCrmMix('images/funnel_icons/lifterlms.svg'),
+            'funnel_cat_icons'           => apply_filters('fluentcrm_funnel_icons', [
+                'wordpresstriggers'    => fluentCrmMix('images/funnel_icons/wordpress.svg'),
+                'woocommerce'          => fluentCrmMix('images/funnel_icons/woocommerce.svg'),
+                'lifterlms'            => fluentCrmMix('images/funnel_icons/lifterlms.svg'),
                 'easydigitaldownloads' => fluentCrmMix('images/funnel_icons/easydigitaldownloads.svg'),
-                'learndash' => fluentCrmMix('images/funnel_icons/learndash.svg'),
-                'memberpress' => fluentCrmMix('images/funnel_icons/memberpress.svg'),
-                'paidmembershippro' => fluentCrmMix('images/funnel_icons/paidmembershippro.svg'),
-                'restrictcontentpro' => fluentCrmMix('images/funnel_icons/restrictcontentpro.svg'),
-                'tutorlms' => fluentCrmMix('images/funnel_icons/tutorlms.svg'),
-                'wishlistmember' => fluentCrmMix('images/funnel_icons/wishlistmember.svg'),
-            ]
+                'learndash'            => fluentCrmMix('images/funnel_icons/learndash.svg'),
+                'memberpress'          => fluentCrmMix('images/funnel_icons/memberpress.svg'),
+                'paidmembershippro'    => fluentCrmMix('images/funnel_icons/paidmembershippro.svg'),
+                'restrictcontentpro'   => fluentCrmMix('images/funnel_icons/restrictcontentpro.svg'),
+                'tutorlms'             => fluentCrmMix('images/funnel_icons/tutorlms.svg'),
+                'wishlistmember'       => fluentCrmMix('images/funnel_icons/wishlistmember.svg'),
+            ])
         ));
     }
 
@@ -458,6 +463,14 @@ class AdminMenu
 
     public function emailBuilderBlockInit()
     {
+        if(function_exists('wp_enqueue_media')) {
+            // Editor default styles.
+            add_filter('user_can_richedit', '__return_true');
+            wp_tinymce_inline_scripts();
+            wp_enqueue_editor();
+            wp_enqueue_media();
+        }
+
         global $current_screen;
 
         $current_screen->is_block_editor(true);
@@ -485,7 +498,8 @@ class AdminMenu
 
         wp_enqueue_script($script_handle, fluentCrmMix('block_editor/index.js'), $dependencies, $version);
 
-        if( defined( 'WC_PLUGIN_FILE' )) {
+
+        if (defined('WC_PLUGIN_FILE')) {
             wp_enqueue_script(
                 'fc_block_woo_product',
                 fluentCrmMix('block_editor/woo-product-index.js'),
@@ -505,17 +519,11 @@ class AdminMenu
             'wp.blocks.unstable__bootstrapServerSideBlockDefinitions(' . wp_json_encode($settings) . ');'
         );
 
-        // Editor default styles.
-        add_filter('user_can_richedit', '__return_true');
-        wp_tinymce_inline_scripts();
-        wp_enqueue_editor();
-        wp_enqueue_media();
-
         wp_enqueue_script('wp-format-library');
         wp_enqueue_style('wp-format-library');
 
         $css = 'block_editor/index.css';
-        if (is_rtl()) {
+        if (fluentcrm_is_rtl()) {
             $css = 'block_editor/index-rtl.css';
         }
         // Styles.
@@ -574,7 +582,7 @@ class AdminMenu
             'fluentcrm/conditional-group'
         );
 
-        if( defined( 'WC_PLUGIN_FILE' )) {
+        if (defined('WC_PLUGIN_FILE')) {
             $allowedBlocks[] = 'fluentcrm/woo-product';
         }
 
@@ -589,10 +597,20 @@ class AdminMenu
             'alignWide'                   => false,
             'allowedMimeTypes'            => get_allowed_mime_types(),
             'imageSizes'                  => $available_image_sizes,
-            'isRTL'                       => is_rtl(),
+            'isRTL'                       => fluentcrm_is_rtl(),
             'maxUploadFileSize'           => $max_upload_size,
             'allowedBlockTypes'           => $allowedBlocks,
-            '__experimentalBlockPatterns' => []
+            '__experimentalBlockPatterns' => [],
+          '__experimentalFeatures' => [
+              'blocks' => [
+                  'core/button' => [
+                      'border' => [
+                          'customRadius' => true
+                      ]
+                  ]
+              ]
+          ]
+          //  '__experimentalSetIsInserterOpened' => true
         );
 
         $themePref = Helper::getThemePrefScheme();

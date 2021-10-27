@@ -53,6 +53,14 @@ class Subscriber extends Model
         static::updating(function ($model) {
             if ($model->user_id && Helper::isUserSyncEnabled()) {
                 $user = get_user_by('email', $model->email);
+
+                $email_mismatch = false;
+
+                if (!$user) {
+                    $email_mismatch = true;
+                    $user = get_user_by('ID', $model->user_id);
+                }
+
                 if ($user) {
                     if ($model->first_name) {
                         update_user_meta($user->ID, 'first_name', $model->first_name);
@@ -60,8 +68,14 @@ class Subscriber extends Model
                     if ($model->last_name) {
                         update_user_meta($user->ID, 'last_name', $model->last_name);
                     }
+
+                    if ($email_mismatch && apply_filters('fluentcrm_update_wp_user_email_on_change', false)) {
+                        $user->user_email = $model->email;
+                        wp_update_user($user);
+                    }
+
+                    $model->user_id = $user->ID; // in case user id mismatch
                 }
-                $model->user_id = $user->ID; // in case user id mismatch
             }
         });
     }
@@ -359,7 +373,7 @@ class Subscriber extends Model
     public function syncCustomFieldValues($values, $deleteOtherValues = true)
     {
         $emptyValues = array_filter($values, function ($value) {
-            return empty($value);
+            return $value === '';
         });
 
         if ($deleteOtherValues) {
@@ -372,7 +386,10 @@ class Subscriber extends Model
             }
         }
 
-        $newValues = array_filter($values);
+        $newValues = array_filter($values, function ($value) {
+            return $value !== '';
+        });
+
         foreach ($newValues as $key => $value) {
             $exist = $this->meta()->where('key', $key)->first();
             if ($exist) {
@@ -499,9 +516,9 @@ class Subscriber extends Model
      * @param boolean $doubleOptin Send Double Optin Emails for new pending contacts
      * @return array affected records/collection
      */
-    public static function import($data, $tags, $lists, $update, $newStatus = '', $doubleOptin = false)
+    public static function import($data, $tags, $lists, $update, $newStatus = '', $doubleOptin = false, $forceStatusChange = false)
     {
-        if(!defined('FLUENTCRM_DOING_BULK_IMPORT')) {
+        if (!defined('FLUENTCRM_DOING_BULK_IMPORT')) {
             define('FLUENTCRM_DOING_BULK_IMPORT', true);
         }
 
@@ -535,7 +552,7 @@ class Subscriber extends Model
         foreach ($data as $item) {
             $item['hash'] = md5($item['email']);
             if (isset($existingSubscribers[$item['email']])) {
-                if ($newStatus && !in_array($newStatus, $strictStatuses)) {
+                if (!$forceStatusChange && $newStatus && !in_array($newStatus, $strictStatuses)) {
                     $item['status'] = $existingSubscribers[$item['email']]->status;
                 } else if ($newStatus) {
                     $item['status'] = $newStatus;
@@ -547,7 +564,10 @@ class Subscriber extends Model
                     $existingSubscribers[$item['email']]->syncCustomFieldValues($customValues, false);
                 }
                 unset($item['custom_values']);
-                $updateables[] = $item;
+                unset($item['id']);
+                unset($item['created_at']);
+                $item['updated_at'] = fluentCrmTimestamp();
+                $updateables[] = array_filter($item);
             } else {
                 if (isset($newRecords[$item['email']])) {
                     $skips[] = $item;
@@ -567,10 +587,10 @@ class Subscriber extends Model
                 $newRecords[$item['email']] = 1;
 
                 unset($item['custom_values']);
-                $insertables[] = array_merge($item, $extraValues);
+                unset($item['id']);
+                $insertables[] = array_filter(array_merge($item, $extraValues));
             }
         }
-
 
         if ($insertables) {
             $insertIds = static::insert($insertables);
@@ -590,12 +610,24 @@ class Subscriber extends Model
                     }
                 }
             }
+
+            foreach ($insertedModels as $insertedModel) {
+                do_action('fluentcrm_contact_created', $insertedModel);
+            }
+
         }
 
         if ($shouldUpdate) {
             foreach ($updateables as $updateable) {
                 $existingModel = $existingSubscribers[$updateable['email']];
+                $oldStatus  = $existingModel->status;
                 $existingModel->fill($updateable)->save();
+
+                if(!empty($updateable['status']) && $updateable['status'] !=  $oldStatus) {
+                    $newStatus = $updateable['status'];
+                    do_action('fluentcrm_subscriber_status_to_' . $newStatus, $existingModel, $oldStatus);
+                }
+                do_action('fluentcrm_contact_updated', $existingModel);
                 $updatedModels->push($existingModel);
             }
         }
@@ -612,7 +644,7 @@ class Subscriber extends Model
                     $tags && $model->attachTags($tags);
                     $lists && $model->attachLists($lists);
 
-                    if($doubleOptin && $model->status == 'pending') {
+                    if ($doubleOptin && $model->status == 'pending') {
                         $model->sendDoubleOptinEmail();
                     }
                 }
@@ -628,7 +660,7 @@ class Subscriber extends Model
             'inserted' => $insertedModels,
             'updated'  => $updatedModels,
             'skips'    => $skips,
-            'errors' => $errors
+            'errors'   => $errors
         ];
     }
 
@@ -676,7 +708,15 @@ class Subscriber extends Model
         }
 
         if ($exist) {
-            $exist->fill($subscriberData)->save();
+            $oldEmail = $exist->email;
+            $exist->fill($subscriberData);
+            $dirtyFields = $exist->getDirty();
+            $exist->save();
+
+            if (isset($dirtyFields['email'])) {
+                do_action('fluentcrm_contact_email_changed', $exist, $oldEmail);
+            }
+
         } else {
             $exist = static::create($subscriberData);
         }
@@ -708,7 +748,7 @@ class Subscriber extends Model
     {
         $lastDoubleOptin = fluentcrm_get_subscriber_meta($this->id, '_last_double_optin_timestamp');
         if ($lastDoubleOptin && (time() - $lastDoubleOptin < 150)) {
-           // return false;
+            // return false;
         } else {
             fluentcrm_update_subscriber_meta($this->id, '_last_double_optin_timestamp', time());
         }
@@ -867,15 +907,15 @@ class Subscriber extends Model
             ->where('object_type', $objectType)
             ->first();
 
-        if($exist) {
+        if ($exist) {
             $exist->value = $metaValue;
             $exist->save();
             return true;
         }
         $this->meta()->create([
-            'key' => $metaKey,
+            'key'         => $metaKey,
             'object_type' => $objectType,
-            'value' => $metaValue
+            'value'       => $metaValue
         ]);
 
         return true;
@@ -887,7 +927,7 @@ class Subscriber extends Model
             ->where('key', $metaKey)
             ->where('object_type', $objectType)
             ->first();
-        if($exist) {
+        if ($exist) {
             return $exist->value;
         }
 

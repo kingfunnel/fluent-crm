@@ -86,6 +86,8 @@ class FluentFormSubmissionTrigger extends BaseTrigger
                     'value_options' => $valueOptions,
                     'local_label'   => __('Select Contact Property', 'fluent-crm'),
                     'remote_label'  => __('Select Form Field', 'fluent-crm'),
+                    'local_placeholder' => __('Select Contact Property', 'fluent-crm'),
+                    'remote_placeholder' => __('Select Form Property', 'fluent-crm'),
                     'fields'        => apply_filters('fluentcrm_fluentform_other_map_fields',
                         FunnelHelper::getSecondaryContactFieldMaps()
                     )

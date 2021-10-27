@@ -137,4 +137,20 @@ class CampaignAnalyticsController extends Controller
             'total' => 0
         ];
     }
+
+    public function getUnsubscribers(Request $request, $campaignId)
+    {
+        $unsubscribes = CampaignUrlMetric::with('subscriber')
+            ->where('campaign_id', $campaignId)
+            ->where('type', 'unsubscribe')
+            ->paginate();
+
+        foreach ($unsubscribes as $unsubscribe) {
+            $unsubscribe->subscriber->reason = $unsubscribe->subscriber->unsubscribeReason();
+        }
+
+        return [
+            'unsubscribes' => $unsubscribes
+        ];
+    }
 }

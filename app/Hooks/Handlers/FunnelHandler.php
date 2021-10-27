@@ -22,7 +22,6 @@ use FluentCrm\App\Services\Funnel\Triggers\FluentFormSubmissionTrigger;
 use FluentCrm\App\Services\Funnel\Triggers\UserRegistrationTrigger;
 use FluentCrm\App\Services\PermissionManager;
 use FluentCrm\Includes\Helpers\Arr;
-use FluentCrm\Includes\Request\Request;
 
 class FunnelHandler
 {

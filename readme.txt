@@ -2,9 +2,9 @@
 Contributors: techjewel,adreastrian,heera,wpmanageninja
 Tags: newsletter, crm, Email Marketing, Funnel, Email Newsletter
 Requires at least: 5.0
-Tested up to: 5.8.0
+Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 2.2.2
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,15 @@ The easiest and fastest Email Marketing, Newsletter Plugin & CRM Solution for Wo
 [FluentCRM](https://fluentcrm.com) is the best and complete feature-rich Email Marketing & CRM solution. It is also the simplest and fastest CRM and Marketing Plugin on WordPress. Manage your customer relationships, build your email lists, send email campaigns, build funnels, and make more profit and increase your conversion rates. (Yes, It's Free!)
 
 = FEATURES - Every online business needs =
+
+**🎉 All-in-One Email Marketing Solution**
+With FluentCRM, send email campaigns to targeted audiences, send sequential emails, onboard your new customers even automate your full email marketing with powerful automation visual automation builder.
+After sending each email campaign, you can analyze the open rate, click rate, revenue earned from that specific campaign. You can also check data matrix like who open the emails and who clicked and based on that, you can do more actions and segment your customers further.
+
+* Send or Schedule Email Campaigns (Unlimited contacts and campaigns)
+* In-detailed campaign reports
+* Run Automation for customer on-boarding or on different WordPress events.
+* Send automated emails and track performance
 
 **🎉 Customer relationship management (CRM)**
 
@@ -103,6 +112,10 @@ FluentCRM is a self-hosted WordPress plugin. You own your data, and no external 
 = 🚀 FluentSMTP - WordPress Mail SMTP, SES, SendGrid, MailGun Plugin 🚀 =
 We have released a companion plugin to connect with your Email sending service providers like Amazon SES, SendGrid, MailGun, SendInBlue, PepiPost, SparkPost, All Other SMTP.
 FluentSMTP has all the powerful features like email logging, email resend, and most importantly, adding multiple email connections and routing your transactional and marketing emails easily.
+
+= 🚀 Connect with ThriveCart  🚀 =
+If you use ThriveCart then you easily integrate your ThriveCart store with FluentCRM. You can import your ThriveCart customers and automatically add, segment send sequential emails on ThriveCart activity like product sales, product refund, subscription cancelled etc.
+This is a free integration, and you can make ThriveCart more powerful.
 
 = Build and Crafted By Ninjas =
 
@@ -269,6 +282,17 @@ The entire source code is <a href="https://github.com/fluentcrm/fluent-crm/">ava
 10. Pro Integrations
 
 == Changelog ==
+
+= 2.3.0 (Date: October 25, 2021) =
+* Seamless contact import experience
+* Persistent contact page
+* Improvements to Email Templates and Editor
+* Ability to change automation trigger
+* Fixed: Template Sorting
+* Fixed: Unsubscription on email sequence
+* Fixed: Bounce Handler with SendGrid
+* Added Integration with ThriveCart (Addon)
+* Added Addons page to get all the free addons at once
 
 = 2.2.2 (Date: July 21, 2021) =
 * Hot Fixed release

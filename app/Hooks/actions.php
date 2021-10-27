@@ -48,7 +48,8 @@ $app->addAction('init', 'Integrations@register');
 /*
  * Funnel
  */
-$app->addAction('init', 'FunnelHandler@handle', 10);
+$app->addAction('fluentcrm_addons_loaded', 'FunnelHandler@handle');
+
 $app->addAction('fluentcrm_subscriber_status_to_subscribed', 'FunnelHandler@resumeSubscriberFunnels', 1, 2);
 
 /*
@@ -60,11 +61,14 @@ $app->addAction('fluentcrm_list_deleted', 'Cleanup@deleteListAssets', 10, 1);
 $app->addAction('fluentcrm_tag_deleted', 'Cleanup@deleteTagAssets', 10, 1);
 
 $app->addAction('fluentcrm_subscriber_status_to_unsubscribed', 'Cleanup@handleUnsubscribe');
+$app->addAction('fluentcrm_subscriber_status_to_bounced', 'Cleanup@handleUnsubscribe');
+$app->addAction('fluentcrm_subscriber_status_to_complained', 'Cleanup@handleUnsubscribe');
+
+$app->addAction('fluentcrm_contact_email_changed', 'Cleanup@handleContactEmailChanged');
 
 /*
  * Admin Bar
  */
-
 $app->addAction('admin_bar_menu', 'AdminBar@init');
 
 // This is required to instantly send emails
@@ -83,7 +87,6 @@ add_action('wp_ajax_nopriv_fluentcrm-post-campaigns-send-now', function () use (
         ]);
     }
 });
-
 
 /*
  * For Short URL Redirect

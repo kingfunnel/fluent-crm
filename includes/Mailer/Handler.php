@@ -151,7 +151,7 @@ class Handler
     {
         do_action('fluentcrm_sending_emails_starting', $campaignEmails);
 
-        if (defined('FLUENTSMTP')) {
+        if (defined('FLUENTMAIL')) {
             add_filter('fluentmail_will_log_email', 'fluentcrm_maybe_disable_fsmtp_log', 10, 2);
         }
 
@@ -190,7 +190,7 @@ class Handler
             ]);
         }
 
-        if (defined('FLUENTSMTP')) {
+        if (defined('FLUENTMAIL')) {
             remove_filter('fluentmail_will_log_email', 'fluentcrm_maybe_disable_fsmtp_log', 10);
         }
 

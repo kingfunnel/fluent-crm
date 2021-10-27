@@ -93,76 +93,65 @@ class ShortcodeParser
 
     protected function getCrmValue($valueKey, $defaultValue = '', $subscriber = [])
     {
-        if ($valueKey == 'unsubscribe_url') {
-            return add_query_arg(array_filter([
-                'fluentcrm' => 1,
-                'route'     => 'unsubscribe',
-                'ce_id'     => $subscriber->email_id,
-                'hash'      => $subscriber->hash
-            ]), site_url());
+        switch ($valueKey) {
+            case "unsubscribe_url":
+                return add_query_arg(array_filter([
+                    'fluentcrm' => 1,
+                    'route'     => 'unsubscribe',
+                    'ce_id'     => $subscriber->email_id,
+                    'hash'      => $subscriber->hash
+                ]), site_url('/'));
+            case "manage_subscription_url":
+                return add_query_arg(array_filter([
+                    'fluentcrm' => 1,
+                    'route'     => 'manage_subscription',
+                    'ce_id'     => $subscriber->id,
+                    'hash'      => $subscriber->hash
+                ]), site_url('/'));
+            case "unsubscribe_html":
+                if ($defaultValue) {
+                    $defaultValue = __('Unsubscribe', 'fluent-crm');
+                }
+
+                $url = add_query_arg(array_filter([
+                    'fluentcrm' => 1,
+                    'route'     => 'unsubscribe',
+                    'ce_id'     => $subscriber->email_id,
+                    'hash'      => $subscriber->hash
+                ]), site_url('/'));
+
+                return '<a class="fc_unsub_url" href="' . $url . '">' . $defaultValue . '</a>';
+            case "manage_subscription_html":
+                if ($defaultValue) {
+                    $defaultValue = __('Email Preference', 'fluent-crm');
+                }
+
+                $url = add_query_arg(array_filter([
+                    'fluentcrm' => 1,
+                    'route'     => 'manage_subscription',
+                    'ce_id'     => $subscriber->id,
+                    'hash'      => $subscriber->hash
+                ]), site_url('/'));
+
+                return '<a class="fc_msub_url" href="' . $url . '">' . $defaultValue . '</a>';
+            case "activate_button":
+                if (!$defaultValue) {
+                    $defaultValue = 'Confirm Subscription';
+                }
+                $data = $subscriber->toArray();
+                $url = site_url('?fluentcrm=1&route=confirmation&s_id=' . $data['id'] . '&hash=' . $data['hash']);
+                return '<a style="color: #ffffff; background-color: #454545; font-size: 16px; border-radius: 5px; text-decoration: none; font-weight: normal; font-style: normal; padding: 0.8rem 1rem; border-color: #0072ff;" href="' . $url . '">' . $defaultValue . '</a>';
+            case "business_name":
+                $business = fluentcrmGetGlobalSettings('business_settings', []);
+                $businessName = Arr::get($business, 'business_name');
+                return (!empty($businessName)) ? $businessName : $defaultValue;
+            case "business_address":
+                $business = fluentcrmGetGlobalSettings('business_settings', []);
+                $address = Arr::get($business, 'business_address', $defaultValue);
+                return (!empty($address)) ? $address : $defaultValue;
+            default:
+                return $defaultValue;
         }
-
-        if ($valueKey == 'manage_subscription_url') {
-            return add_query_arg(array_filter([
-                'fluentcrm' => 1,
-                'route' => 'manage_subscription',
-                'ce_id' => $subscriber->id,
-                'hash' => $subscriber->hash
-            ]), site_url());
-        }
-
-        if($valueKey == 'unsubscribe_html') {
-            if($defaultValue) {
-                $defaultValue = __('Unsubscribe', 'fluent-crm');
-            }
-
-            $url = add_query_arg(array_filter([
-                'fluentcrm' => 1,
-                'route'     => 'unsubscribe',
-                'ce_id'     => $subscriber->email_id,
-                'hash'      => $subscriber->hash
-            ]), site_url());
-
-            return '<a class="fc_unsub_url" href="'.$url.'">'.$defaultValue.'</a>';
-        }
-
-        if($valueKey == 'manage_subscription_html') {
-            if($defaultValue) {
-                $defaultValue = __('Email Preference', 'fluent-crm');
-            }
-
-            $url = add_query_arg(array_filter([
-                'fluentcrm' => 1,
-                'route' => 'manage_subscription',
-                'ce_id' => $subscriber->id,
-                'hash' => $subscriber->hash
-            ]), site_url());
-
-            return '<a class="fc_msub_url" href="'.$url.'">'.$defaultValue.'</a>';
-        }
-
-        if ($valueKey == 'activate_button') {
-            if (!$defaultValue) {
-                $defaultValue = 'Confirm Subscription';
-            }
-            $data = $subscriber->toArray();
-            $url = site_url('?fluentcrm=1&route=confirmation&s_id=' . $data['id'] . '&hash=' . $data['hash']);
-            return '<a style="color: #ffffff; background-color: #454545; font-size: 16px; border-radius: 5px; text-decoration: none; font-weight: normal; font-style: normal; padding: 0.8rem 1rem; border-color: #0072ff;" href="' . $url . '">' . $defaultValue . '</a>';
-        }
-
-        if ($valueKey == 'business_name') {
-            $business = fluentcrmGetGlobalSettings('business_settings', []);
-            $businessName = Arr::get($business, 'business_name');
-            return ($businessName) ? $businessName : $defaultValue;
-        }
-
-        if ($valueKey == 'business_address') {
-            $business = fluentcrmGetGlobalSettings('business_settings', []);
-            $address = Arr::get($business, 'business_address', $defaultValue);
-            return ($address) ? $address : $defaultValue;
-        }
-
-        return $defaultValue;
     }
 
     protected function getSubscriberValue($subscriber, $valueKey, $defaultValue)

@@ -239,7 +239,6 @@ class Campaign extends Model
             }
         }
 
-
         return [
             'subscriber_ids' => $subscriberIds,
             'total_count'    => $totalItems

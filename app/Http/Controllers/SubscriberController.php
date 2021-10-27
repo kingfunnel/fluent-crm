@@ -285,28 +285,36 @@ class SubscriberController extends Controller
         unset($validData['last_activity']);
         $customValues = Arr::get($originalData, 'custom_values');
 
-        if(!$customValues || !$validFields) {
-            $this->sendError([
+        if(!$customValues && !$validFields) {
+            return $this->sendError([
                 'message' => __('Provided data is not valid', 'fluent-crm')
             ]);
         }
 
+        $oldEmail = $subscriber->email;
+
         $subscriber->fill($validData);
-        $isDirty = $subscriber->isDirty();
+        $dirtyFields = $subscriber->getDirty();
+
         $subscriber->save();
 
-        if ($isDirty) {
-            do_action('fluentcrm_contact_updated', $subscriber, $validData);
+        if ($customValues) {
+            $subscriber->syncCustomFieldValues($customValues, true);
         }
 
-        if ($customValues) {
-            $subscriber->syncCustomFieldValues($customValues, false);
+        if ($dirtyFields) {
+
+            if(isset($dirtyFields['email'])) {
+                do_action('fluentcrm_contact_email_changed', $subscriber, $oldEmail);
+            }
+
+            do_action('fluentcrm_contact_updated', $subscriber, $validData);
         }
 
         return $this->sendSuccess([
             'message' => __('Subscriber successfully updated', 'fluent-crm'),
             'contact' => $subscriber,
-            'isDirty' => $isDirty
+            'isDirty' => !!$dirtyFields
         ], 200);
     }
 
@@ -327,7 +335,7 @@ class SubscriberController extends Controller
     /**
      * Get the attachment options e.g. attach or, detach
      *
-     * @param \FluentCrm\App\Models\Base\Model $model
+     * @param \FluentCrm\App\Models\Model $model
      * @param string $type
      * @return array
      */
@@ -336,6 +344,7 @@ class SubscriberController extends Controller
         $attachments = $this->request->get($type, []);
 
         if ($attachments) {
+
             $attachments = $model::select('id')->whereIn('slug', $attachments)->get();
 
             if ($attachments) {
@@ -510,13 +519,13 @@ class SubscriberController extends Controller
     {
         $contact = Subscriber::findOrFail($contactId);
         if ($contact->status != 'subscribed') {
-            $this->sendError([
+            return $this->sendError([
                 'message' => __('Subscriber\'s status need to be subscribed.', 'fluent-crm')
             ]);
         }
 
         add_action('wp_mail_failed', function ($wpError) {
-            $this->sendError([
+            return $this->sendError([
                 'message' => $wpError->get_error_message()
             ]);
         }, 10, 1);

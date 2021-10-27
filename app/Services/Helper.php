@@ -2,6 +2,7 @@
 
 namespace FluentCrm\App\Services;
 
+use FluentCrm\App\Models\Lists;
 use FluentCrm\App\Models\Subscriber;
 use FluentCrm\App\Models\UrlStores;
 use FluentCrm\Includes\Helpers\Arr;
@@ -42,13 +43,10 @@ class Helper
             return $emailBody;
         }
 
+
         if (apply_filters('fluentcrm_disable_email_open_tracking', false)) {
             return $emailBody;
         }
-
-        $preViewUrl = site_url('?fluentcrm=1&route=email_preview&_e_hash=' . $hash);
-        // Replace Web Preview
-        $emailBody = str_replace('##web_preview_url##', $preViewUrl, $emailBody);
 
         $trackImageUrl = add_query_arg([
             'fluentcrm' => 1,
@@ -164,14 +162,15 @@ class Helper
             'key'        => 'general',
             'title'      => __('General', 'fluent-crm'),
             'shortcodes' => apply_filters('fluentcrm_general_smartcodes', [
-                '{{crm.business_name}}'           => __('Business Name', 'fluent-crm'),
-                '{{crm.business_address}}'        => __('Business Address', 'fluent-crm'),
-                '{{wp.admin_email}}'              => __('Admin Email', 'fluent-crm'),
-                '{{wp.url}}'                      => __('Site URL', 'fluent-crm'),
-                '##crm.unsubscribe_url##'         => __('Unsubscribe URL', 'fluent-crm'),
-                '##crm.manage_subscription_url##' => __('Manage Subscription URL', 'fluent-crm'),
-                '{{crm.unsubscribe_html|Unsubscribe}}' => __('Unsubscribe Hyperlink HTML', 'fluent-crm'),
-                '{{crm.manage_subscription_html|Manage Preference}}' => __('Manage Subscription Hyperlink HTML', 'fluent-crm')
+                '{{crm.business_name}}'                              => __('Business Name', 'fluent-crm'),
+                '{{crm.business_address}}'                           => __('Business Address', 'fluent-crm'),
+                '{{wp.admin_email}}'                                 => __('Admin Email', 'fluent-crm'),
+                '{{wp.url}}'                                         => __('Site URL', 'fluent-crm'),
+                '##crm.unsubscribe_url##'                            => __('Unsubscribe URL', 'fluent-crm'),
+                '##crm.manage_subscription_url##'                    => __('Manage Subscription URL', 'fluent-crm'),
+                '##web_preview_url##'                                => __('View On Browser URL', 'fluent-crm'),
+                '{{crm.unsubscribe_html|Unsubscribe}}'               => __('Unsubscribe Hyperlink HTML', 'fluent-crm'),
+                '{{crm.manage_subscription_html|Manage Preference}}' => __('Manage Subscription Hyperlink HTML', 'fluent-crm'),
             ])
         ];
 
@@ -221,7 +220,7 @@ class Helper
     {
         $defaultDesignConfig = [
             'content_width'        => 700,
-            'headings_font_family'  => "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+            'headings_font_family' => "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
             'text_color'           => '#202020',
             'link_color'           => '',
             'headings_color'       => '#202020',
@@ -233,10 +232,10 @@ class Helper
 
 
         $classicConfig = [
-            'content_font_family'  => "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+            'content_font_family' => "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
         ];
 
-        if(defined('FLUENTCAMPAIGN')) {
+        if (defined('FLUENTCAMPAIGN')) {
             $defaultDesignConfig['disable_footer'] = 'no';
             $classicConfig['disable_footer'] = 'no';
         }
@@ -690,7 +689,7 @@ class Helper
 
     public static function hasComplianceText($text)
     {
-        if(apply_filters('fluencrm_disable_check_compliance_string', false, $text)) {
+        if (apply_filters('fluencrm_disable_check_compliance_string', false, $text)) {
             return true;
         }
 
@@ -702,7 +701,7 @@ class Helper
         ];
 
         foreach ($lookUpTexts as $lookUpText) {
-            if(strpos($text, $lookUpText) !== false) {
+            if (strpos($text, $lookUpText) !== false) {
                 return true;
             }
         }
@@ -713,12 +712,35 @@ class Helper
     public static function maybeDisableEmojiOnEmail()
     {
         static $disabled;
-        if($disabled) {
+        if ($disabled) {
             return;
         }
-        if(apply_filters('fluentcrm_disable_emoji_to_image', true)) {
-            remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+        if (apply_filters('fluentcrm_disable_emoji_to_image', true)) {
+            remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
         }
         $disabled = true;
+    }
+
+    public static function getPublicLists()
+    {
+        $emailSettings = self::getGlobalEmailSettings();
+        $lists = [];
+        $preListType = Arr::get($emailSettings, 'pref_list_type', 'none');
+        if ($preListType == 'filtered_only') {
+            $prefListItems = Arr::get($emailSettings, 'pref_list_items', []);
+            if ($prefListItems) {
+                $lists = Lists::whereIn('id', $prefListItems)->get();
+                if ($lists->isEmpty()) {
+                    return [];
+                }
+            }
+        } else if ($preListType == 'all') {
+            $lists = Lists::get();
+            if ($lists->isEmpty()) {
+                return [];
+            }
+        }
+
+        return $lists;
     }
 }
